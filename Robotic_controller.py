@@ -16,3 +16,8 @@ class BBCON:
         self.motobs = []
         self.arbitrator = arbitrator
 
+        #self.current_timestep = 0
+        #self.inactive_behaviors = []
+        #self.controlled_robot = ""
+
+
