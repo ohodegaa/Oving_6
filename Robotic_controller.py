@@ -20,7 +20,6 @@ class BBCON:
         self.inactive_behaviors = []
         #self.controlled_robot = ""
 
-
     def add_behavior(self, behavior):
         """
         Adds a behavior object to the behaviors list
