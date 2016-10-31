@@ -47,7 +47,7 @@ class BBCON:
         self.active_behaviors.append(self.inactive_behaviors.pop(self.inactive_behaviors.index(behavior)))
 
     def deactivate_behavior(self, behavior):
-        """
+        """´
         Deactivates a behavior
         :param behavior: Behavior object
         :return:
