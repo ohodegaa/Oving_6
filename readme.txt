@@ -11,6 +11,11 @@ Kode til skap: 020
 
 Oversikt:
 
+format: *modulename.py* (*classname*)
+            *function1*
+            *function2*
+            ***
+
 Sensobs:
     camera (Camera):
         __init__(img_width=128, img_height=96, img_rot=0)
