@@ -1,12 +1,13 @@
 __author__ = 'keithd'
 
-from time import sleep
 import random
+from time import sleep
+
 import imager2 as IMR
-from reflectance_sensors import ReflectanceSensors
-from camera import Camera
-from motors import Motors
-from ultrasonic import Ultrasonic
+from wrappers.camera import Camera
+from wrappers.motors import Motors
+from wrappers.reflectance_sensors import ReflectanceSensors
+from wrappers.ultrasonic import Ultrasonic
 from zumo_button import ZumoButton
 
 

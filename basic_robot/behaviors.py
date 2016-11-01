@@ -1,16 +1,16 @@
 __author__ = 'ohodegaa'
 
-from basic_robot import camera, imager2, irproximity_sensor, reflectance_sensors, ultrasonic
-from robotic_controller import BBCON
 from abc import ABCMeta, abstractmethod
+
+from robotic_controller import BBCON
+from wrappers.reflectance_sensors import ReflectanceSensors as RefSens
 
 
 class Behavior(metaclass=ABCMeta):
-    def __init__(self, bbcon: BBCON, priority):
+    def __init__(self, bbcon: BBCON, priority:float):
         self.bbcon = bbcon
-        self.sensobs = bbcon.sensobs
         self.active_flag = True
-        self.motor_recomendations = {} #dict[key:motob function, val:function args]
+        self.motor_recomendations = {}  # dict[key:motob function, val:function args]
         self.halt_request = False
         self.priority = priority
         self.match_degree = 1
@@ -25,15 +25,32 @@ class Behavior(metaclass=ABCMeta):
         pass
 
     @abstractmethod
+    def sense_and_act(self):
+        pass
+
+    def update_weight(self):
+        self.weigth = self.priority*self.match_degree
+
     def update(self):
         if self.active_flag:
             self.consider_deactivation()
         else:
             self.consider_activation()
 
-    @abstractmethod
-    def sense_and_act(self):
-        pass
+        if self.active_flag:
+            self.sense_and_act()
+            self.update_weight()
 
 
+
+class FollowLine(Behavior):
+
+    def __init__(self, bbcon:BBCON, priority:float):
+        super().__init__(bbcon, priority)
+        self.sensobs = RefSens(auto_calibrate=True)
+        self._dark = 0.0
+        self._ligth = 0.0
+        self.sensor_readings = []
+
+    def consider_activation(self):
 
