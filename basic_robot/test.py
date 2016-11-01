@@ -14,3 +14,7 @@ def main():
     bbcon = BBCON()
     m = Motors()
     m.forward(0.5, 2)
+
+
+if __name__ == '__main__':
+    main()
