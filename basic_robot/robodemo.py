@@ -73,8 +73,24 @@ def shoot_panorama(camera,motors,shots=5):
     return im
 
 
+def drive():
+    ZumoButton.wait_for_press()
+    m = Motors()
+    dir = ""
+    while dir != "stop":
+        dir = input(">")
+        if dir == "w":
+            m.forward()
+        elif dir == "s":
+            m.backward()
+        elif dir == "d":
+            m.right()
+        elif dir == "a":
+            m.left()
+
+
 def main():
-    dancer()
+    drive()
 
 if __name__ == '__main__':
     main()
