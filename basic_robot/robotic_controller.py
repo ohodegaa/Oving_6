@@ -1,25 +1,26 @@
 __author__ = 'ohodegaa'
 
-import basic_robot
+from arbitrator import Arbitrator
 
 class BBCON:
 
 
-    def __init__(self, arbitrator):
+    def __init__(self):
         """
         Initiates the Behavior-Based Robotic Controller
         :param arbitrator: arbitrator, will provide behaviors?
         """
         self.behaviors = []
         self.active_behaviors = []
+        self.inactive_behaviors = []
+
         self.sensobs = []
         self.motobs = []
-        self.arbitrator = arbitrator
-        self.halt_request = None
 
-        #self.current_timestep = 0
-        self.inactive_behaviors = []
-        #self.controlled_robot = ""
+        self.arbitrator = Arbitrator()
+
+        self.current_timestep = 0
+        self.controlled_robot = "Zumo Robot"
 
     def add_behavior(self, behavior):
         """
@@ -90,3 +91,11 @@ class BBCON:
         self.choose_action()
         self.wait()
         self.reset_sensobs()
+
+    def restart(self):
+        """
+        Inits a new robot session
+        :return:
+        """
+
+        pass
