@@ -55,13 +55,15 @@ class BBCON:
         :return:
         """
         self.inactive_behaviors.append(self.active_behaviors.pop(self.active_behaviors.index(behavior)))
-
+        behavior.deactivate()
 
     def update_all_sensobs(self):
         """
         Updates all sensob-objects by calling senob.update on all
         :return:
         """
+        for sensob in self.active_behaviors:
+            sensob.update()
 
     def update_all_behaviors(self):
         """
