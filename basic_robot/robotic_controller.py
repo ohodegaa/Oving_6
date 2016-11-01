@@ -70,6 +70,10 @@ class BBCON:
         Updates all behaviors
         :return:
         """
+        self.update_all_sensobs()
+
+        for behavior in self.active_behaviors:
+            behavior.update()
 
 
     def choose_action(self):
