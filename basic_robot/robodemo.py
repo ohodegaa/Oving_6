@@ -80,13 +80,13 @@ def drive():
     while dir != "stop":
         dir = input(">")
         if dir == "w":
-            m.forward(dur=1)
+            m.forward(speed=1,dur=1)
         elif dir == "s":
-            m.backward(dur=1)
+            m.backward(speed=1,dur=1)
         elif dir == "d":
-            m.right(dur=5)
+            m.right(speed=1,dur=5)
         elif dir == "a":
-            m.left(dur=5)
+            m.left(speed=1,dur=5)
 
 
 def main():
