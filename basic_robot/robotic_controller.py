@@ -86,15 +86,17 @@ class BBCON:
 
 
     def fire_motors(self, motor_recom: dict):
-        for motob, setting in motor_recom:
+        for motob, setting in motor_recom.items():
             motob.set(setting)
 
+
     def wait(self, dur=0):
-        # ???
+
         pass
 
     def reset_sensobs(self):
-        self.arbitrator.reset_sensobs()
+        for sensob in self.sensobs:
+            sensob.reset()
 
 
     def run_one_timestep(self):
