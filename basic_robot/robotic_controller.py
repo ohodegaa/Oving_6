@@ -77,12 +77,18 @@ class BBCON:
 
 
     def choose_action(self):
-        # ???
+        """
+        Calls arbitrator.choose_action, which returns motor_recom (dict[key: , value: ])
+        :return:
+        """
         motor_recom, self.halt_request = self.arbitrator.choose_action()
         self.fire_motors(motor_recom)
 
-    def fire_motors(self, motor_recom):
-        self.arbitrator.set_motors(motor_recom)
+
+    def fire_motors(self, motor_recom: dict):
+
+        for motob in motor_recom:
+            motob.set()
 
     def wait(self, dur=0):
         # ???
