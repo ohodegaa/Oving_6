@@ -1,6 +1,7 @@
 __author__ = 'ohodegaa'
 
 from arbitrator import Arbitrator
+from behaviors import Behavior
 
 class BBCON:
 
@@ -39,14 +40,13 @@ class BBCON:
         """
         self.sensobs.append(sensob)
 
-    def activate_behavior(self, behavior):
+    def activate_behavior(self, behavior: Behavior):
         """
         Activates a behavior
         :param behavior: Behavior object
         :return:
         """
         self.active_behaviors.append(self.inactive_behaviors.pop(self.inactive_behaviors.index(behavior)))
-        behavior.activate()
 
     def deactivate_behavior(self, behavior):
         """
@@ -55,7 +55,6 @@ class BBCON:
         :return:
         """
         self.inactive_behaviors.append(self.active_behaviors.pop(self.active_behaviors.index(behavior)))
-        behavior.deactivate()
 
     def update_all_sensobs(self):
         """

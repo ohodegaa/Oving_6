@@ -48,11 +48,16 @@ class FollowLine(Behavior):
     def __init__(self, bbcon:BBCON, priority:float):
         super().__init__(bbcon, priority)
         self.sensobs = RefSens(auto_calibrate=True)
-        self._dark = 0.0
-        self._ligth = 0.0
         self.sensor_readings = []
 
     def consider_activation(self):
+        if any(val for val in self.sensor_readings):
+            self.bbcon.activate_behavior(self)
+            self.active_flag = True
 
+    def consider_deactivation(self):
+        if not any(val for val in self.sensor_readings):
+            self.bbcon.deactivate_behavior(self)
+            self.active_flag = False
 
 
