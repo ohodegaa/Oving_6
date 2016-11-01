@@ -74,7 +74,7 @@ def shoot_panorama(camera,motors,shots=5):
 
 
 def drive():
-    ZumoButton.wait_for_press()
+    ZumoButton().wait_for_press()
     m = Motors()
     dir = ""
     while dir != "stop":
