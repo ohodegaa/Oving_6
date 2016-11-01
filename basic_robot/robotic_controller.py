@@ -77,7 +77,7 @@ class BBCON:
 
     def choose_action(self):
         """
-        Calls arbitrator.choose_action, which returns motor_recom (dict[key: , value: ])
+        Calls arbitrator.choose_action, which returns motor_recom (dict[key: motor object, value: motor settings])
         :return:
         """
         motor_recom, self.halt_request = self.arbitrator.choose_action()
