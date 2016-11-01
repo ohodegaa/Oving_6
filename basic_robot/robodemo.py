@@ -84,9 +84,9 @@ def drive():
         elif dir == "s":
             m.backward(dur=1)
         elif dir == "d":
-            m.right(dur=1)
+            m.right(dur=5)
         elif dir == "a":
-            m.left(dur=1)
+            m.left(dur=5)
 
 
 def main():
