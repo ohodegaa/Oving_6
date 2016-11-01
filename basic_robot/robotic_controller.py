@@ -75,7 +75,6 @@ class BBCON:
         for behavior in self.active_behaviors:
             behavior.update()
 
-
     def choose_action(self):
         """
         Calls arbitrator.choose_action, which returns motor_recom (dict[key: , value: ])
@@ -84,20 +83,17 @@ class BBCON:
         motor_recom, self.halt_request = self.arbitrator.choose_action()
         self.fire_motors(motor_recom)
 
-
-    def fire_motors(self, motor_recom: dict):
+    @staticmethod
+    def fire_motors(motor_recom: dict):
         for motob, setting in motor_recom.items():
             motob.set(setting)
 
-
     def wait(self, dur=0):
-
         pass
 
     def reset_sensobs(self):
         for sensob in self.sensobs:
             sensob.reset()
-
 
     def run_one_timestep(self):
         self.update_all_sensobs()
