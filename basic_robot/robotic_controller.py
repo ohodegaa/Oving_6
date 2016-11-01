@@ -86,9 +86,8 @@ class BBCON:
 
 
     def fire_motors(self, motor_recom: dict):
-
-        for motob in motor_recom:
-            motob.set()
+        for motob, setting in motor_recom:
+            motob.set(setting)
 
     def wait(self, dur=0):
         # ???
