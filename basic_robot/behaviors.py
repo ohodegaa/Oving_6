@@ -6,6 +6,7 @@ class Behavior:
         pass
 
 class Wander(Behavior):
-
+    pass
 
 class FollowRobot(Behavior):
+    pass
