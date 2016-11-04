@@ -21,3 +21,8 @@ class SensorObject(metaclass=ABCMeta):
             sensor.reset()
 
 
+class FloorSensor(SensorObject):
+
+    def __init__(self):
+        super().__init__()
+        self.sensors.append()
