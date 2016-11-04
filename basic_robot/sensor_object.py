@@ -77,3 +77,12 @@ class SideSensor(SensorObject):
     def set_value(self):
         self.value = self.side_sensor.get_value()
 
+
+class FrontSensor(SensorObject):
+    def __init__(self):
+        super().__init__()
+        self.sensors.append(Ultrasonic())
+        self.front_sensor = self.sensors[0]
+
+    def set_value(self):
+        self.value = self.front_sensor.get_value()
