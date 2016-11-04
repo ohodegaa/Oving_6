@@ -2,11 +2,12 @@ __author__ = 'ohodegaa'
 
 from abc import ABCMeta, abstractmethod
 from wrappers.reflectance_sensors import ReflectanceSensors
-
+from wrappers.camera import Camera
+from wrappers.irproximity_sensor import IRProximitySensor
+from wrappers.ultrasonic import Ultrasonic
 
 
 class SensorObject(metaclass=ABCMeta):
-
     def __init__(self):
         self.sensors = []
         self.value = None
@@ -29,28 +30,28 @@ class SensorObject(metaclass=ABCMeta):
 
 
 class FloorSensor(SensorObject):
-
     def __init__(self):
         super().__init__()
         auto = True
-        self.on_line = range(0.0, 0.5)
-        self.off_line = range(0.5, 1.0)
+        self.limit = 0.5
         self.sensors.append(ReflectanceSensors(auto_calibrate=auto))
         self.floor_sensor = self.sensors[0]
 
     def set_value(self):
-        self.set_bool_array()
+        self.value = self.get_bool_array(self.floor_sensor.get_value, self.limit)
 
-    def set_bool_array(self):
-        self.value = [(val in self.on_line) for val in self.floor_sensor.get_value()]
+    @staticmethod
+    def get_bool_array(sensor_array, limit):
+        return [val < limit for val in sensor_array]
 
-    def set_tuple(self):
+    @staticmethod
+    def get_tuple(sensor_array, limit):
         length = 0
         temp_length = -1
         left = -1
         temp_left = -1
-        for i in range(len(self.floor_sensor.get_value())):
-            if self.floor_sensor.get_value()[i] < 0.5:
+        for i in range(len(sensor_array)):
+            if sensor_array[i] < limit:
                 if temp_length == -1:
                     temp_left = i
                 temp_length += 1
@@ -64,4 +65,15 @@ class FloorSensor(SensorObject):
             left = temp_left
         elif temp_left == -1:
             length = 0
-        self.value = (left, left + length)
+        return left, left + length
+
+
+class SideSensor(SensorObject):
+    def __init__(self):
+        super().__init__()
+        self.sensors.append(IRProximitySensor())
+        self.side_sensor = self.sensors[0]
+
+    def set_value(self):
+        self.value = self.side_sensor.get_value()
+
