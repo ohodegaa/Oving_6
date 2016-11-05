@@ -31,5 +31,3 @@ class BeltsController:
 
     def forward(self, dur=None):
         self.belts.set_value(([self._default_speed, self._default_speed], dur))
-
-    
