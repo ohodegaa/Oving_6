@@ -133,3 +133,4 @@ class FrontSensor(Sensor):
 
     def set_value(self):
         self.value = self.front_sensor.get_value()
+
