@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
       <profile-state>
@@ -51,4 +52,7 @@
       </state>
     </states>
   </component>
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.4.3 (/Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4)" project-jdk-type="Python SDK" />
+>>>>>>> 90672d4edb6738f65ac2e4ebc740c5ae507bbe3a
 </project>

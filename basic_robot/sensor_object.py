@@ -132,6 +132,7 @@ class FrontSensor(Sensor):
         self.front_sensor = self.sensors[0]
 
     def set_value(self):
+<<<<<<< HEAD
         self.value = self.front_sensor.get_value()
 
 
@@ -142,3 +143,6 @@ class CameraSensor(Sensor):
         self.sensors.append(Camera())
         self.camera = self.sensors[0]
         self.image = None
+=======
+        self.value = self.front_sensor.get_value()
+>>>>>>> 90672d4edb6738f65ac2e4ebc740c5ae507bbe3a
