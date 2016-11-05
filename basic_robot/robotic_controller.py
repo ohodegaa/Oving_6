@@ -2,6 +2,7 @@ __author__ = 'ohodegaa'
 
 from arbitrator import Arbitrator
 from behaviors import Behavior
+from motor_objects import BeltsController
 
 class BBCON:
 
@@ -17,6 +18,8 @@ class BBCON:
 
         self.sensobs = []
         self.motobs = []
+        self.belts = BeltsController()
+
 
         self.arbitrator = Arbitrator()
 
