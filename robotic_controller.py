@@ -51,6 +51,7 @@ class BBCON:
         :return:
         """
         self.active_behaviors.append(self.inactive_behaviors.pop(self.inactive_behaviors.index(behavior)))
+        behavior.active_flag = True
 
     def deactivate_behavior(self, behavior):
         """
@@ -59,6 +60,7 @@ class BBCON:
         :return:
         """
         self.inactive_behaviors.append(self.active_behaviors.pop(self.active_behaviors.index(behavior)))
+        behavior.active_flag = False
 
     def update_all_sensobs(self):
         """
