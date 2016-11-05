@@ -1,21 +1,27 @@
 __author__ = 'ohodegaa'
 
 import random
+from behaviors import Behavior
 
 class Arbitrator:
-
-    #Liste med vekting av
+    rec_dict = {}
+    #Liste med vekting
     def choose_action(self):
-        if random:
+        choice = 'random'
+        if choice == 'random':
             self.stochastic()
         else:
             self.deterministic()
-        pass
 
     def stochastic(self):
-        pass
+        return random.choice(list(self.rec_dict.keys()))
 
     def deterministic(self):
-        pass
+        max_value = 0
+        key_name  = ''
+        for key, value in self.rec_dict:
+            if value > max_value:
+                max_value = value
+                key_name = key
 
-    pass
+        return key_name
