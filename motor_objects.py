@@ -4,17 +4,14 @@ from wrappers.motors import Motors
 
 
 class BeltsController:
-
     _sharp_turn_dur = 0.6
     _default_speed = 0.6
-
-
 
     def __init__(self):
         self.motors = []
         self.motors.append(Motors())
         self.belts = self.motors[0]
-        self.value = None #[(function, *args)...]
+        self.value = None  # [(function, *args)...]
         self.recom = (BeltsController.forward, [2, 3, ])
 
     def update(self, recomendation):
@@ -34,4 +31,4 @@ class BeltsController:
 
     def operationalize(self):
         for func, args in self.value:
-            self.func(args)
+            self.func(*args)

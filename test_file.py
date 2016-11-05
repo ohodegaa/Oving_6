@@ -2,13 +2,11 @@ __author__ = 'ohodegaa'
 
 
 class test:
-
     def __init__(self):
         self.value = None
 
     def update(self, recommendation):
         self.value = recommendation
-
 
     def operationalize(self):
         for (func, args) in self.value:
@@ -28,6 +26,11 @@ class test:
         self.operationalize()
 
 
+def find_index(liste):
+    print((isinstance(x, test) for x in liste))
+
 
 t = test()
+liste = [t]
+find_index(liste)
 t.main(t)

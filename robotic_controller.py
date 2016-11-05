@@ -18,8 +18,9 @@ class BBCON:
 
         self.sensobs = []
         self.motobs = []
-        self.belts = BeltsController()
+        self.motobs.append(self.belts)
 
+        self.belts = all(isinstance(x, BeltsController) for x in self.motobs)
 
         self.arbitrator = Arbitrator()
 
