@@ -5,7 +5,7 @@ from behaviors import Behavior
 
 class Arbitrator:
     rec_dict = {}
-    #Liste med vekting
+    #Liste med vekting av farward, backward, left, right
     def choose_action(self):
         choice = 'random'
         if choice == 'random':
@@ -19,7 +19,7 @@ class Arbitrator:
     def deterministic(self):
         max_value = 0
         key_name  = ''
-        for key, value in self.rec_dict:
+        for key, value in self.rec_dict.items():
             if value > max_value:
                 max_value = value
                 key_name = key
