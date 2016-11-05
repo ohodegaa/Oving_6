@@ -135,7 +135,6 @@ class FrontSensor(Sensor):
         self.value = self.front_sensor.get_value()
 
 
-
 class CameraSensor(Sensor):
 
     def __init__(self):
