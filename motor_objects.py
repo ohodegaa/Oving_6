@@ -13,8 +13,9 @@ class BeltsController:
         self.belts = self.motors[0]
         self.value = None  # [(function, *args)...]
 
-    def update(self, recomendation):
-        self.value = recomendation
+    def update(self, recommendation):
+        self.value = recommendation
+        self.operationalize()
 
     def sharp_left(self):
         self.belts.set_value([-self._default_speed, self._default_speed], self._sharp_turn_dur)
@@ -31,3 +32,11 @@ class BeltsController:
     def operationalize(self):
         for func, args in self.value:
             self.func(*args)
+
+def main():
+    belts = BeltsController()
+    belts.update([(belts.sharp_left, ())])
+
+
+if __name__ == '__main__':
+    main()
