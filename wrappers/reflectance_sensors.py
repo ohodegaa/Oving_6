@@ -117,6 +117,7 @@ class ReflectanceSensors():
         self.recharge_capacitors()
         for pin in self.sensor_inputs:
             time = self.get_sensor_reading(pin)
+            print("time: ", time)
 
             index = self.sensor_indices[pin]
             self.value[index] = 1 - self.normalize(index, time.microseconds)
