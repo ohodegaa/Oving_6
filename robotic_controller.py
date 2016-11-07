@@ -1,8 +1,9 @@
 __author__ = 'ohodegaa'
 
 from arbitrator import Arbitrator
-from behaviors import Behavior
+from behaviors import *
 from motor_objects import BeltsController
+from sensor_object import *
 
 class BBCON:
 
@@ -26,6 +27,7 @@ class BBCON:
 
         self.current_timestep = 0
         self.controlled_robot = "Zumo Robot"
+        self.halt_request = False
 
     def add_behavior(self, behavior):
         """
@@ -34,7 +36,7 @@ class BBCON:
         :return:
         """
         self.behaviors.append(behavior)
-        self.inactive_behaviors.append(behavior)
+        self.active_behaviors.append(behavior)
 
     def add_sensob(self, sensob):
         """
@@ -75,7 +77,6 @@ class BBCON:
         Updates all behaviors
         :return:
         """
-        self.update_all_sensobs()
 
         for behavior in self.active_behaviors:
             behavior.update()
@@ -104,13 +105,19 @@ class BBCON:
         self.update_all_sensobs()
         self.update_all_behaviors()
         self.choose_action()
-        self.wait()
+        self.wait(0.2)
         self.reset_sensobs()
 
-    def restart(self):
-        """
-        Inits a new robot session
-        :return:
-        """
 
-        pass
+def main(self):
+    bbcon = BBCON()
+    bbcon.add_sensob(FloorSensor())
+    bbcon.add_behavior(FollowLine(self, 10))
+
+    while bbcon.halt_request == False:
+        bbcon.run_one_timestep()
+
+    print("the system was stopped")
+
+if __name__ == '__main__':
+    main()

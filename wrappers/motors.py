@@ -7,6 +7,7 @@ import wiringpi2 as wp
 class Motors():
     def __init__(self):
         self.setup()
+        self.prev = []
 
     def setup(self):
         self.max = 1024
@@ -76,8 +77,13 @@ class Motors():
         self.set_left_speed(self.dc)
         self.set_right_speed(self.dc)
 
+    def get_prev(self):
+        return self.prev
+
+
     # Val should be a 2-element vector with values for the left and right motor speeds, both in the range [-1, 1].
     def set_value(self, val,dur=None):
+        self.prev = val
         left_val = int(self.max * val[0])
         right_val = int(self.max * val[1])
 

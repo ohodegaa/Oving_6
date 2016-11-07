@@ -4,6 +4,8 @@ from abc import ABCMeta, abstractmethod
 
 from robotic_controller import BBCON
 from wrappers.reflectance_sensors import ReflectanceSensors as RefSens
+from sensor_object import *
+
 
 
 class Behavior(metaclass=ABCMeta):
@@ -49,11 +51,19 @@ class FollowLine(Behavior):
         super().__init__(bbcon, priority)
         self.sensobs = RefSens(auto_calibrate=True)
         self.sensor_readings = []
+        self.FloorSensor = None
+        for senOb in bbcon:
+            if isinstance(senOb, FloorSensor):
+                self.FloorSensor = senOb
 
-    def consider_activation(self):
-        if any(val for val in self.sensor_readings):
-            self.bbcon.activate_behavior(self)
+    def update(self):
+        """
+        sets the field motor_recomendations to a new value
+        :return: None
+        """
+    def sense_and_act(self):
+        #produce motor recommendations
 
-    def consider_deactivation(self):
-        if not any(val for val in self.sensor_readings):
-            self.bbcon.deactivate_behavior(self)
+class AvoidObject(Behavior):
+
+
