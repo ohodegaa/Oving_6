@@ -36,7 +36,7 @@ class BeltsController:
     def operationalize(self):
         for (func, args) in self.value:
             func(*args)
-            self.belts.forward(speed=0.6, dur=5)
+            self.belts.forward(speed=1.0, dur=3)
 
 def main():
     belts = BeltsController()
