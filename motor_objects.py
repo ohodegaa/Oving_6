@@ -28,10 +28,10 @@ class BeltsController:
         self.motor.set_value([self._default_speed, self._default_speed], dur)
 
     def turn_left(self, degree):
-        self.motor.set_value([self._default_speed * (1 - degree), self._default_speed], dur=3)
+        self.motor.set_value([self._default_speed * (1 - degree), self._default_speed], dur=2)
 
     def turn_right(self, degree):
-        self.motor.set_value([self._default_speed, self._default_speed * (1 - degree)], dur=3)
+        self.motor.set_value([self._default_speed, self._default_speed * (1 - degree)], dur=2)
 
     def operationalize(self):
         for (func, args) in self.value:
@@ -41,6 +41,6 @@ class BeltsController:
 def main():
     belts = BeltsController()
     ZumoButton().wait_for_press()
-    belts.update([(belts.turn_left, [0.99])])
+    belts.update([(belts.turn_left, [0.99]), (belts.turn_right, [0.99])])
 
 main()
