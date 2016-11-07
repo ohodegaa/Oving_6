@@ -57,6 +57,3 @@ class FollowLine(Behavior):
     def consider_deactivation(self):
         if not any(val for val in self.sensor_readings):
             self.bbcon.deactivate_behavior(self)
-
-
-
