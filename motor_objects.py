@@ -1,7 +1,7 @@
 __author__ = 'ohodegaa'
 
 from wrappers.motors import Motors
-
+from zumo_button import ZumoButton
 
 class BeltsController:
     _sharp_turn_dur = 0.6
@@ -41,6 +41,7 @@ class BeltsController:
 def main():
     belts = BeltsController()
     m = Motors()
+    ZumoButton().wait_for_press()
     m.forward(speed=0.3, dur=1.0)
     belts.motor.forward(speed=1.0, dur=3)
     belts.update([(belts.turn_left, [0.5])])
