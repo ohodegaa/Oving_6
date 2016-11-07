@@ -40,6 +40,6 @@ class BeltsController:
 def main():
     belts = BeltsController()
     ZumoButton().wait_for_press()
-    belts.update([(belts.turn_left, [0.99]), (belts.turn_right, [0.99])])
+    belts.update([(belts.turn_left, [1.0]), (belts.turn_right, [1.0])])
 
 main()
