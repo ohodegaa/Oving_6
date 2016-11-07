@@ -50,7 +50,7 @@ class FloorSensor(Sensor):
         """
         super().__init__()
         auto = True
-        self.limit = 0.5
+        self.limit = 0.8
         self.sensors.append(ReflectanceSensors(auto_calibrate=auto))
         self.reflectance_sensor = self.sensors[0]
 

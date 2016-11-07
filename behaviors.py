@@ -95,17 +95,17 @@ class FollowLine(Behavior):
                 else:
                     self.match_degree = 0.5
 
-            self.motor_recomendations = {self.motor: (motor_action, [self.match_degree])}
+            self.motor_recomendations = {self.motor: [(motor_action, [self.match_degree])]}
 
         elif left == 0 and right == 0:
             motor_action = self.motor.random
             self.match_degree = 0.8
-            self.motor_recomendations = {self.motor: (motor_action, [randint(0, 1)])}
+            self.motor_recomendations = {self.motor: [(motor_action, [randint(0, 1)])]}
 
         else:
             motor_action = self.motor.forward
             self.match_degree = 0.4
-            self.motor_recomendations = {self.motor: (motor_action, [0.8])}
+            self.motor_recomendations = {self.motor: [(motor_action, [0.8])]}
 
         self.weight = self.match_degree * self.priority
 
@@ -135,7 +135,7 @@ class AvoidObject(Behavior):
             motor_action = (self.motor.random, [randint(0, 1)])
             self.match_degree = 0.4
 
-        self.motor_recomendations = {self.motor: motor_action}
+        self.motor_recomendations = {self.motor: [motor_action]}
         self.weight = self.match_degree * self.priority
 
 
