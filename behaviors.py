@@ -10,7 +10,7 @@ class Behavior(metaclass=ABCMeta):
     def __init__(self, bbcon: BBCON, priority:float):
         self.bbcon = bbcon
         self.active_flag = True
-        self.motor_recomendations = {}  # dict[key:motob function, val:function args]
+        self.motor_recomendations = {}  # dict[key:motob object, val: [(motob function, (arg1, arg2..)), (...)]
         self.halt_request = False
         self.priority = priority
         self.match_degree = 1
