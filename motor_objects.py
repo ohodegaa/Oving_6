@@ -1,14 +1,14 @@
 __author__ = 'ohodegaa'
 
 from wrappers.motors import Motors
-
+from zumo_button import ZumoButton
 
 class BeltsController:
     _sharp_turn_dur = 0.6
     _default_speed = 0.6
 
     def __init__(self):
-        self.belts = Motors()
+        self.motor = Motors()
         self.value = None  # [(function, *args)...]
 
     def update(self, recommendation):
@@ -16,24 +16,30 @@ class BeltsController:
         self.operationalize()
 
     def sharp_left(self):
-        self.belts.set_value([-self._default_speed, self._default_speed], self._sharp_turn_dur)
+        self.motor.set_value([-self._default_speed, self._default_speed], self._sharp_turn_dur)
 
     def sharp_right(self):
-        self.belts.set_value([self._default_speed, -self._default_speed], self._sharp_turn_dur)
+        self.motor.set_value([self._default_speed, -self._default_speed], self._sharp_turn_dur)
 
     def backwards(self, dur=None):
-        self.belts.set_value([-self._default_speed, -self._default_speed], dur)
+        self.motor.set_value([-self._default_speed, -self._default_speed], dur)
 
     def forward(self, dur=None):
-        self.belts.set_value([self._default_speed, self._default_speed], dur)
+        self.motor.set_value([self._default_speed, self._default_speed], dur)
 
     def turn_left(self, degree):
-        self.belts.set_value([self._default_speed * (1 - degree), self._default_speed])
+        self.motor.set_value([self._default_speed * (1 - degree), self._default_speed], dur=2)
 
     def turn_right(self, degree):
-        self.belts.set_value([self._default_speed, self._default_speed * (1 - degree)])
+        self.motor.set_value([self._default_speed, self._default_speed * (1 - degree)], dur=2)
 
     def operationalize(self):
-        for func, args in self.value:
+        for (func, args) in self.value:
             func(*args)
-            self.belts.right(speed=0.6, dur=5)
+
+def main():
+    belts = BeltsController()
+    ZumoButton().wait_for_press()
+    belts.update([(belts.turn_left, [0.99]), (belts.turn_right, [0.99])])
+
+main()
