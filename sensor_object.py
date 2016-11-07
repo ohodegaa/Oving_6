@@ -17,14 +17,13 @@ class Sensor(metaclass=ABCMeta):
         self.sensors = []
         self.value = None
 
+    @abstractmethod
     def update(self):
         """
         Updates the sensor and sets the sensob value
         :return:
         """
-        for sensor in self.sensors:
-            sensor.update()
-        self.set_value()
+        pass
 
     def get_value(self):
         """
@@ -41,14 +40,6 @@ class Sensor(metaclass=ABCMeta):
         for sensor in self.sensors:
             sensor.reset()
 
-    @abstractmethod
-    def set_value(self):
-        """
-        Abstract method, will be implemented by all sensobs. Sets the sensob value.
-        :return:
-        """
-        pass
-
 
 class FloorSensor(Sensor):
     def __init__(self):
@@ -63,13 +54,10 @@ class FloorSensor(Sensor):
         self.sensors.append(ReflectanceSensors(auto_calibrate=auto))
         self.reflectance_sensor = self.sensors[0]
 
-    def set_value(self):
-        self.value = self.get_bool_array(self.reflectance_sensor.get_value, self.limit)
-        # [sens0, sens1, sens2, sens3, sens4, sens5]
-        
     def update(self):
-        self.reflectance_sensor.update()
-        self.value = self.reflectance_sensor.get_value()
+        self.value = self.get_bool_array(self.reflectance_sensor.update(), self.limit)
+        print("In sensob; ", self.value)
+        # [sens0, sens1, sens2, sens3, sens4, sens5]
 
     @staticmethod
     def get_bool_array(sensor_array, limit):
@@ -142,7 +130,6 @@ class FrontSensor(Sensor):
 
 
 class CameraSensor(Sensor):
-
     def __init__(self):
         super().__init__()
         self.sensors.append(Camera())
