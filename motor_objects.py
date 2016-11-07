@@ -36,6 +36,7 @@ class BeltsController:
             print(func)
 
     def main(self):
+        print("Hello!!!")
         self.update([(self.sharp_left, ())])
 
 
