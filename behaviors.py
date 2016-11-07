@@ -94,11 +94,11 @@ class AvoidObject(Behavior):
 
         def sense_and_act(self):
             if self.distance > #some value:
-                #if last_act == right:
-                    #self.motor_objects.sharpRightLeft
+                sharp_left
+                activate follow wall behavior
 
-                #else:
-                    #self.motor_objects
+class FollowWall(Behavior):
+
 
 
 class Camera(Behavior):
