@@ -4,24 +4,35 @@ import random
 from behaviors import Behavior
 
 class Arbitrator:
-    rec_dict = {}
-    #Liste med vekting av farward, backward, left, right
-    def choose_action(self):
-        choice = 'random'
-        if choice == 'random':
-            self.stochastic()
-        else:
-            self.deterministic()
+    def __init__(self, bbcon):
+        """
+        referance to the bbcon object that holds the arbitrator
+        :param bbcon:
+        """
+        self.bbcon = bbcon
+        self.last_motor_rec = None
+        self.last_weight = None
+        self.last_behaviour = None
 
-    def stochastic(self):
-        return random.choice(list(self.rec_dict.keys()))
+    #Liste med vekting av forward, backward, left, right
+    def choose_action(self, choice = "deterministic"):
+        """
+        chooses which recomendation that is most important from bbcons behaviours
+        :param choice:
+        :return:
+        """
+        max_weight = 0
+        best_behaviour = None
 
-    def deterministic(self):
-        max_value = 0
-        key_name  = ''
-        for key, value in self.rec_dict.items():
-            if value > max_value:
-                max_value = value
-                key_name = key
+        for behaviour in self.bbcon.behaviors:
+            if behaviour.weight > max_weight:
+                best_behaviour = behaviour
 
-        return key_name
+        self.last_behaviour = best_behaviour
+        self.last_motor_rec = best_behaviour.motor_recomendations
+        self.last_weight = best_behaviour.weight
+
+        return best_behaviour
+
+
+
