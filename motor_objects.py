@@ -11,7 +11,6 @@ class BeltsController:
         self.belts = Motors()
         self.value = None  # [(function, *args)...]
 
-
     def update(self, recommendation):
         self.value = recommendation
         self.operationalize()
@@ -26,22 +25,15 @@ class BeltsController:
         self.belts.set_value([-self._default_speed, -self._default_speed], dur)
 
     def forward(self, dur=None):
-        self.belts.set_value(([self._default_speed, self._default_speed], dur))
+        self.belts.set_value([self._default_speed, self._default_speed], dur)
 
     def turn_left(self, degree):
+        self.belts.set_value([self._default_speed * (1 - degree), self._default_speed])
 
-
-
+    def turn_right(self, degree):
+        self.belts.set_value([self._default_speed, self._default_speed * (1 - degree)])
 
     def operationalize(self):
         for func, args in self.value:
             func(*args)
             self.belts.right(speed=0.6, dur=5)
-
-def main():
-    bc = BeltsController()
-    bc.update([(bc.forward, (5))])
-
-
-if __name__ == '__main__':
-    main()
