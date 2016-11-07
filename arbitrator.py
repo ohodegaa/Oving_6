@@ -1,7 +1,8 @@
 __author__ = 'ohodegaa'
 
 import random
-from behaviors import Behavior
+
+
 
 class Arbitrator:
     def __init__(self, bbcon):
@@ -15,8 +16,8 @@ class Arbitrator:
         self.last_behaviour = None
         self.last_halt_request = False
 
-    #Liste med vekting av forward, backward, left, right
-    def choose_action(self, choice = "deterministic"):
+    # Liste med vekting av forward, backward, left, right
+    def choose_action(self, choice="deterministic"):
         """
         chooses which recomendation that is most important from bbcons behaviours
         :param choice:
@@ -32,9 +33,6 @@ class Arbitrator:
         self.last_behaviour = best_behaviour
         self.last_motor_rec = best_behaviour.motor_recomendations
         self.last_weight = best_behaviour.weight
-        self.last_halt_request = behaviour.halt_request
+        self.last_halt_request = best_behaviour.halt_request
 
         return self.last_motor_rec, self.last_halt_request
-
-
-

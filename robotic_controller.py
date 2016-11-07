@@ -5,9 +5,8 @@ from behaviors import *
 from motor_objects import BeltsController
 from sensor_object import *
 
+
 class BBCON:
-
-
     def __init__(self):
         """
         Initiates the Behavior-Based Robotic Controller
@@ -23,7 +22,7 @@ class BBCON:
 
         self.belts = self.motobs[0]
 
-        self.arbitrator = Arbitrator()
+        self.arbitrator = Arbitrator(self)
 
         self.current_timestep = 0
         self.controlled_robot = "Zumo Robot"
@@ -94,7 +93,7 @@ class BBCON:
         for motob, setting in motor_recom.items():
             motob.update(setting)
 
-    def wait(self, dur=0):
+    def wait(self, dur: float = 0.0):
         pass
 
     def reset_sensobs(self):
@@ -112,12 +111,13 @@ class BBCON:
 def main(self):
     bbcon = BBCON()
     bbcon.add_sensob(FloorSensor())
-    bbcon.add_behavior(FollowLine(self, 10))
+    bbcon.add_behavior(FollowLine(self, 1.0))
 
-    while bbcon.halt_request == False:
+    while not bbcon.halt_request:
         bbcon.run_one_timestep()
 
     print("the system was stopped")
+
 
 if __name__ == '__main__':
     main()
