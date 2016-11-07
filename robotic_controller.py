@@ -46,7 +46,7 @@ class BBCON:
         """
         self.sensobs.append(sensob)
 
-    def activate_behavior(self, behavior: Behavior):
+    def activate_behavior(self, behavior):
         """
         Activates a behavior
         :param behavior: Behavior object
