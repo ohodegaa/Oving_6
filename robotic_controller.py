@@ -5,6 +5,7 @@ from behaviors import *
 from motor_objects import BeltsController
 from sensor_object import *
 from zumo_button import ZumoButton
+from time import sleep
 
 
 class BBCON:
@@ -95,7 +96,7 @@ class BBCON:
             motob.update(setting)
 
     def wait(self, dur: float = 0.0):
-        pass
+        sleep(dur)
 
     def reset_sensobs(self):
         for sensob in self.sensobs:
