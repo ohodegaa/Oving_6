@@ -61,11 +61,16 @@ class FloorSensor(Sensor):
         auto = True
         self.limit = 0.5
         self.sensors.append(ReflectanceSensors(auto_calibrate=auto))
-        self.floor_sensor = self.sensors[0]
+        self.reflectance_sensor = self.sensors[0]
 
     def set_value(self):
-        self.value = self.get_bool_array(self.floor_sensor.get_value, self.limit)
+        self.value = self.get_bool_array(self.reflectance_sensor.get_value, self.limit)
         # [sens0, sens1, sens2, sens3, sens4, sens5]
+        
+    def update(self):
+        self.reflectance_sensor.update()
+        self.value = self.reflectance_sensor.get_value()
+
     @staticmethod
     def get_bool_array(sensor_array, limit):
         """
