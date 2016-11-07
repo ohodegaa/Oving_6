@@ -58,6 +58,8 @@ class FollowLine(Behavior):
             if isinstance(senOb, FloorSensor):
                 self.floor_sensor = senOb
                 break
+        if self.floor_sensor is None:
+            print("Floor sensos not found")
 
     def consider_activation(self):
         pass
