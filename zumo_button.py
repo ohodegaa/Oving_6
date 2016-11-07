@@ -13,4 +13,3 @@ class ZumoButton():
         while read_val:
             read_val = wp.digitalRead(22)
         print("Button pressed!!")
-

@@ -8,9 +8,7 @@ class BeltsController:
     _default_speed = 0.6
 
     def __init__(self):
-        self.motors = []
-        self.motors.append(Motors())
-        self.belts = self.motors[0]
+        self.belts = Motors()
         self.value = None  # [(function, *args)...]
 
     def update(self, recommendation):
@@ -29,16 +27,17 @@ class BeltsController:
     def forward(self, dur=None):
         self.belts.set_value(([self._default_speed, self._default_speed], dur))
 
+
+
     def operationalize(self):
         for func, args in self.value:
             func(*args)
             self.belts.right(speed=0.6, dur=5)
-            print(func)
 
-    def main(self):
-        print("Hello!!!")
-        self.update([(self.sharp_left, ())])
+def main():
+    bc = BeltsController()
+    bc.update([(bc.forward, (5))])
 
 
-belts = BeltsController()
-belts.main()
+if __name__ == '__main__':
+    main()
