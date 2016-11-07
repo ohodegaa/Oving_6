@@ -68,8 +68,8 @@ class FollowLine(Behavior):
         pass
 
     def gather_sensor_values(self):
+        print("floor_sensor.get_value", self.floor_sensor.get_value())
         self.sensor_value = self.floor_sensor.get_value()
-        print("Sensor_val = ", self.sensor_value)
 
     def sense_and_act(self):
         # produce motor recommendations
