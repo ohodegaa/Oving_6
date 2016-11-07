@@ -69,7 +69,7 @@ class BBCON:
         Updates all sensob-objects by calling senob.update on all
         :return:
         """
-        for sensob in self.active_behaviors:
+        for sensob in self.sensobs:
             sensob.update()
 
     def update_all_behaviors(self):
