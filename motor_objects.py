@@ -40,6 +40,8 @@ class BeltsController:
 
 def main():
     belts = BeltsController()
+    m = Motors()
+    m.forward(speed=0.3, dur=1.0)
     belts.motor.forward(speed=1.0, dur=3)
     belts.update([(belts.turn_left, [0.5])])
 
