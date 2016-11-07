@@ -70,13 +70,31 @@ class FollowLine(Behavior):
 
     def sense_and_act(self):
         #produce motor recommendations
-        self.sensor_readings
+
+        if self.sensor_readings[0] > 0.8:
+
+
+
 
 class AvoidObject(Behavior):
 
     def __init__(self, bbcon:BBCON, priority: float):
         super().__init__(bbcon, priority)
-        self.sensobs = IRProximitySensor
+        self.FrontSensor = None
+
+        for senOb in bbcon:
+            if isinstance(senOb, FrontSensor):
+                self.FrontSensor = senOb
+
+        def consider_activation(self):
+            pass
+
+        def consider_deactivation(self):
+            pass
+
+        def sense_and_act(self):
+            if self.
+
 
 class Camera(Behavior):
     def __init__(self, bbcon: BBCON, priority: float):
