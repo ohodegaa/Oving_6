@@ -61,6 +61,8 @@ class FollowLine(Behavior):
         sets the field motor_recomendations to a new value
         :return: None
         """
+    def sense_and_act(self):
+        #produce motor recommendations
 
 class AvoidObject(Behavior):
 
