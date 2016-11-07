@@ -93,7 +93,12 @@ class AvoidObject(Behavior):
             pass
 
         def sense_and_act(self):
-            if self.
+            if self.distance > #some value:
+                #if last_act == right:
+                    #self.motor_objects.sharpRightLeft
+
+                #else:
+                    #self.motor_objects
 
 
 class Camera(Behavior):
