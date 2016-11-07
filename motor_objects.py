@@ -36,7 +36,7 @@ class BeltsController:
 
 def main():
     bc = BeltsController()
-    bc.update([(bc.forward, [5])])
+    bc.update([(bc.forward, (5))])
 
 
 if __name__ == '__main__':
