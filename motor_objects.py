@@ -33,8 +33,10 @@ class BeltsController:
         for func, args in self.value:
             func(*args)
             self.belts.right(speed=0.6, dur=5)
+            print(func)
 
     def main(self):
+        print("Hello!!!")
         self.update([(self.sharp_left, ())])
 
 
