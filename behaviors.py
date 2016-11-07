@@ -95,7 +95,7 @@ class FollowLine(Behavior):
                 else:
                     self.match_degree = 0.5
 
-            self.motor_recomendations = {self.motor: [(motor_action, [self.match_degree])]}
+            self.motor_recomendations = {self.motor: [(motor_action, [0.99])]}
 
         elif left == 0 and right == 0:
             motor_action = self.motor.random
