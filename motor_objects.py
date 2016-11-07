@@ -35,5 +35,11 @@ class BeltsController:
 
     def operationalize(self):
         for func, args in self.value:
-            func(*args)
+            self.func(*args)
             self.belts.right(speed=0.6, dur=5)
+
+def main():
+    belts = BeltsController()
+    belts.update([(BeltsController.turn_left, (0.5))])
+
+main()
