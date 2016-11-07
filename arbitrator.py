@@ -13,6 +13,7 @@ class Arbitrator:
         self.last_motor_rec = None
         self.last_weight = None
         self.last_behaviour = None
+        self.last_halt_request = False
 
     #Liste med vekting av forward, backward, left, right
     def choose_action(self, choice = "deterministic"):
@@ -31,8 +32,9 @@ class Arbitrator:
         self.last_behaviour = best_behaviour
         self.last_motor_rec = best_behaviour.motor_recomendations
         self.last_weight = best_behaviour.weight
+        self.last_halt_request = behaviour.halt_request
 
-        return best_behaviour
+        return self.last_motor_rec, self.last_halt_request
 
 
 
