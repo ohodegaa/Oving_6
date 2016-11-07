@@ -56,14 +56,78 @@ class FollowLine(Behavior):
             if isinstance(senOb, FloorSensor):
                 self.FloorSensor = senOb
 
+    def consider_activation(self):
+        pass
+
+    def consider_deactivation(self):
+        pass
+
     def update(self):
         """
         sets the field motor_recomendations to a new value
         :return: None
         """
+
     def sense_and_act(self):
         #produce motor recommendations
+        self.sensor_readings
 
 class AvoidObject(Behavior):
 
+    def __init__(self, bbcon:BBCON, priority: float):
+        super().__init__(bbcon, priority)
+        self.sensobs = IRProximitySensor
 
+class Camera(Behavior):
+    def __init__(self, bbcon: BBCON, priority: float):
+        super().__init__(bbcon, priority)
+        self.sensobs = RefSens(auto_calibrate=True)
+        self.sensor_readings = []
+        self.FloorSensor = None
+        for senOb in bbcon:
+            if isinstance(senOb, FloorSensor):
+                self.FloorSensor = senOb
+
+
+    def consider_activation(self):
+        pass
+
+
+    def consider_deactivation(self):
+        pass
+
+
+    def update(self):
+        """
+        sets the field motor_recomendations to a new value
+        :return: None
+        """
+
+    def sense_and_act(self):
+
+    # produce motor recommendations
+
+class sideSensors(Behavior):
+    def __init__(self, bbcon:BBCON, priority:float):
+        super().__init__(bbcon, priority)
+        self.sensobs = RefSens(auto_calibrate=True)
+        self.sensor_readings = []
+        self.FloorSensor = None
+        for senOb in bbcon:
+            if isinstance(senOb, FloorSensor):
+                self.FloorSensor = senOb
+
+    def consider_activation(self):
+        pass
+
+    def consider_deactivation(self):
+        pass
+
+    def update(self):
+        """
+        sets the field motor_recomendations to a new value
+        :return: None
+        """
+
+    def sense_and_act(self):
+        #produce motor recommendations
