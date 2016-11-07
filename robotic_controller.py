@@ -109,7 +109,7 @@ class BBCON:
         print("behaviors updated")
         self.choose_action()
         print("Action choosen")
-        self.wait(0.2)
+        #self.wait(0.2)
         self.reset_sensobs()
 
 
