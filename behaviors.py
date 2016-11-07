@@ -85,13 +85,15 @@ class FollowLine(Behavior):
             if left > right:
                 motor_action = self.motor.turn_left
                 if self.sensor_value[0]:
-                    self.match_degree = 0.9
+                    motor_action = self.motor.sharp_left
+                    self.match_degree = 0.97
                 else:
                     self.match_degree = 0.5
             else:
                 motor_action = self.motor.turn_right
                 if self.sensor_value[5]:
-                    self.match_degree = 0.9
+                    motor_action = self.motor.sharp_right
+                    self.match_degree = 0.97
                 else:
                     self.match_degree = 0.5
 
