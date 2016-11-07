@@ -34,11 +34,9 @@ class BeltsController:
             func(*args)
             self.belts.right(speed=0.6, dur=0.6)
 
-def main():
-
-    belts = BeltsController()
-    belts.update([(belts.sharp_left, ())])
+    def main(self):
+        self.update([(self.sharp_left, ())])
 
 
-if __name__ == '__main__':
-    main()
+belts = BeltsController()
+belts.main()
