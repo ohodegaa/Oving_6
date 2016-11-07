@@ -1,7 +1,7 @@
 __author__ = 'ohodegaa'
 
 
-class test:
+class noe_rart:
     def __init__(self):
         self.value = None
 
@@ -10,6 +10,7 @@ class test:
 
     def operationalize(self):
         for (func, args) in self.value:
+            print(*args)
             func(*args)
 
     def A(self):
@@ -22,15 +23,15 @@ class test:
         print("C: 3 args: ", a, b, c)
 
     def main(self, t):
-        self.update([(t.A, ()), (t.C, ("Halla balla", "hello", "hei"))])
+        self.update([(t.B, ["hello"]), (t.C, ("Halla balla", "hello", "hei"))])
         self.operationalize()
 
 
 def find_index(liste):
-    print((isinstance(x, test) for x in liste))
+    print((isinstance(x, noe_rart) for x in liste))
 
 
-t = test()
+t = noe_rart()
 liste = [t]
 find_index(liste)
 t.main(t)
