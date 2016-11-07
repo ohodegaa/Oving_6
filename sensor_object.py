@@ -50,9 +50,9 @@ class FloorSensor(Sensor):
         """
         super().__init__()
         auto = True
-        self.limit = 0.5
         self.sensors.append(ReflectanceSensors(auto_calibrate=auto))
         self.reflectance_sensor = self.sensors[0]
+        self.limit = max(self.reflectance_sensor.max_val)//2
 
     def update(self):
         self.value = self.get_bool_array(self.reflectance_sensor.update(), self.limit)

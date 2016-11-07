@@ -105,7 +105,7 @@ class FollowLine(Behavior):
         else:
             motor_action = self.motor.forward
             self.match_degree = 0.4
-            self.motor_recomendations = {self.motor: [(motor_action, [0.8])]}
+            self.motor_recomendations = {self.motor: [(motor_action, [0.2])]}
 
         self.weight = self.match_degree * self.priority
 
