@@ -42,6 +42,6 @@ class BeltsController:
 
 def main():
     belts = BeltsController()
-    belts.update([(belts.turn_left, (0.5))])
+    belts.update([(belts.turn_left, [0.5])])
 
 main()
