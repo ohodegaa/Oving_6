@@ -11,6 +11,7 @@ class BeltsController:
         self.belts = Motors()
         self.value = None  # [(function, *args)...]
 
+
     def update(self, recommendation):
         self.value = recommendation
         self.operationalize()
@@ -26,6 +27,9 @@ class BeltsController:
 
     def forward(self, dur=None):
         self.belts.set_value(([self._default_speed, self._default_speed], dur))
+
+    def turn_left(self, degree):
+
 
 
 
