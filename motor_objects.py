@@ -36,14 +36,10 @@ class BeltsController:
     def operationalize(self):
         for (func, args) in self.value:
             func(*args)
-            self.motor.forward(speed=1.0, dur=3)
 
 def main():
     belts = BeltsController()
-    m = Motors()
     ZumoButton().wait_for_press()
-    m.forward(speed=0.3, dur=1.0)
-    belts.motor.forward(speed=1.0, dur=3)
     belts.update([(belts.turn_left, [0.5])])
 
 main()
