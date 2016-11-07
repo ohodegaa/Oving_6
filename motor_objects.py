@@ -35,11 +35,12 @@ class BeltsController:
 
     def operationalize(self):
         for (func, args) in self.value:
+            print(*args)
             func(*args)
 
 def main():
     belts = BeltsController()
     ZumoButton().wait_for_press()
-    belts.update([(belts.turn_left, [0.5])])
+    belts.update([(belts.turn_left, [0.99])])
 
 main()
