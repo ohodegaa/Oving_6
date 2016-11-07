@@ -65,7 +65,7 @@ class FloorSensor(Sensor):
 
     def set_value(self):
         self.value = self.get_bool_array(self.floor_sensor.get_value, self.limit)
-
+        # [sens0, sens1, sens2, sens3, sens4, sens5]
     @staticmethod
     def get_bool_array(sensor_array, limit):
         """
