@@ -34,12 +34,14 @@ class BeltsController:
         self.belts.set_value([self._default_speed, self._default_speed * (1 - degree)])
 
     def operationalize(self):
-        for func, args in self.value:
-            self.func(*args)
+        for (func, args) in self.value:
+            print(func)
+            print(self)
+            func(*args)
             self.belts.right(speed=0.6, dur=5)
 
 def main():
     belts = BeltsController()
-    belts.update([(BeltsController.turn_left, (0.5))])
+    belts.update([(belts.turn_left, (0.5))])
 
 main()
