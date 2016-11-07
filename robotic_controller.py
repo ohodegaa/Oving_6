@@ -91,7 +91,7 @@ class BBCON:
     @staticmethod
     def fire_motors(motor_recom: dict):
         for motob, setting in motor_recom.items():
-            motob.set(setting)
+            motob.update(setting)
 
     def wait(self, dur=0):
         pass

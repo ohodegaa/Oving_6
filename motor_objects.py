@@ -12,7 +12,6 @@ class BeltsController:
         self.motors.append(Motors())
         self.belts = self.motors[0]
         self.value = None  # [(function, *args)...]
-        self.recom = (BeltsController.forward, [2, 3, ])
 
     def update(self, recomendation):
         self.value = recomendation
