@@ -16,7 +16,7 @@ class Behavior(metaclass=ABCMeta):
         self.priority = priority
         self.match_degree = 1
         self.motor = self.bbcon.belts
-        self.weigth = self.priority * self.match_degree
+        self.weight = self.priority * self.match_degree
         self.sensor_value = None
 
     @abstractmethod
@@ -36,7 +36,7 @@ class Behavior(metaclass=ABCMeta):
         pass
 
     def update_weight(self):
-        self.weigth = self.priority * self.match_degree
+        self.weight = self.priority * self.match_degree
 
     def update(self):
         if self.active_flag:
@@ -107,7 +107,7 @@ class FollowLine(Behavior):
             self.match_degree = 0.4
             self.motor_recomendations = {self.motor: (motor_action, [0.8])}
 
-        self.weigth = self.match_degree * self.priority
+        self.weight = self.match_degree * self.priority
 
 
 class AvoidObject(Behavior):
@@ -136,7 +136,7 @@ class AvoidObject(Behavior):
             self.match_degree = 0.4
 
         self.motor_recomendations = {self.motor: motor_action}
-        self.weigth = self.match_degree * self.priority
+        self.weight = self.match_degree * self.priority
 
 
 class Camera(Behavior):
