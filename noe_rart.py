@@ -21,3 +21,6 @@ def main():
             break
 
     motor.stop()
+
+
+main()
