@@ -53,14 +53,15 @@ class FloorSensor(Sensor):
         self.sensors.append(ReflectanceSensors(auto_calibrate=auto))
         self.reflectance_sensor = self.sensors[0]
         self.limit = (min(self.reflectance_sensor.max_val) - max(self.reflectance_sensor.min_val))//2
+        print(self.limit)
 
     def update(self):
-        self.value = self.get_bool_array(self.reflectance_sensor.update(), self.limit)
+        self.value = self.get_bool_array(self.reflectance_sensor.update())
         print("In sensob; ", self.value)
         # [sens0, sens1, sens2, sens3, sens4, sens5]
 
-    @staticmethod
-    def get_bool_array(sensor_array, limit):
+
+    def get_bool_array(self, sensor_array):
         """
         Generates an array with boolean values which indicates whether the sensor spotted an dark or bright area.
         -> True indicates a dark area, False indicates a bright area
@@ -68,7 +69,8 @@ class FloorSensor(Sensor):
         :param limit: dark/bright -limit
         :return: an array with boolean values
         """
-        return [val < limit for val in sensor_array]
+        print("Limit: ----- ", self.limit)
+        return [val < self.limit for val in sensor_array]
 
     @staticmethod
     def get_tuple(sensor_array, limit):
