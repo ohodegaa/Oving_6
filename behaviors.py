@@ -73,19 +73,20 @@ class FollowLine(Behavior):
 
     def sense_and_act(self):
         # produce motor recommendations
-        left = 1
-        right = 1
+        left = 0
+        right = 0
+
         for i in range(len(self.sensor_value) // 2):
             if self.sensor_value[i]:
-                left -= 0.3 * i
+                left += 1
             if self.sensor_value[-i - 1]:
-                right -= 0.3 * i
+                right += 1
 
         if left > right:
-            motor_action = (self.motor.turn_left, [left])
+            motor_action = (self.motor.turn_left, 1.0)
 
         elif right > left:
-            motor_action = (self.motor.turn_right, [right])
+            motor_action = (self.motor.turn_right, 1.0)
 
         elif right > 0 and left > 0:
             motor_action = (self.motor.forward, [])
