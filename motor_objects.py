@@ -29,7 +29,7 @@ class BeltsController:
         self.motor.set_value([self._default_speed, self._default_speed], dur)
 
     def set_value(self, left_val, right_val):
-        self.motor.set_value([left_val, right_val])
+        self.motor.set_value([left_val*self._default_speed, right_val*self._default_speed])
 
     def random(self, rand_int):
         self.motor.set_value([self._default_speed * rand_int, self._default_speed * rand_int])
