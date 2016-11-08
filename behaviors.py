@@ -83,10 +83,10 @@ class FollowLine(Behavior):
                 right += 1
 
         if left > right:
-            motor_action = (self.motor.turn_left, 1.0)
+            motor_action = (self.motor.turn_left, [1.0])
 
         elif right > left:
-            motor_action = (self.motor.turn_right, 1.0)
+            motor_action = (self.motor.turn_right, [1.0])
 
         elif right > 0 and left > 0:
             motor_action = (self.motor.forward, [])
