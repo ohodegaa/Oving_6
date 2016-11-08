@@ -28,10 +28,10 @@ class BeltsController:
         self.motor.set_value([self._default_speed, self._default_speed], dur)
 
     def turn_left(self, degree):
-        self.motor.set_value([-self._default_speed, self._default_speed], dur=0.2)
+        self.motor.set_value([-self._default_speed, self._default_speed])
 
     def turn_right(self, degree):
-        self.motor.set_value([self._default_speed, -self._default_speed], dur=0.2)
+        self.motor.set_value([self._default_speed, -self._default_speed])
 
     def random(self, rand_int):
         self.motor.set_value([self._default_speed*rand_int, self._default_speed*rand_int])
@@ -39,11 +39,3 @@ class BeltsController:
     def operationalize(self):
         for (func, args) in self.value:
             func(*args)
-"""
-def main():
-    belts = BeltsController()
-    ZumoButton().wait_for_press()
-    belts.update([(belts.turn_left, [1.0]), (belts.turn_right, [1.0])])
-
-main()
-"""
