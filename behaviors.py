@@ -73,6 +73,7 @@ class FollowLine(Behavior):
 
     def sense_and_act(self):
         # produce motor recommendations
+        self.motor_recommendations = {self.motor: [(self.motor.forward, [2]), (self.motor.sharp_left, [0.5])]*4}
 
         check = [
             self.sensor_value[2] and self.sensor_value[3],
@@ -92,6 +93,7 @@ class FollowLine(Behavior):
             if check[i]:
                 self.motor_recommendations = {self.motor: [motor_action[i]]}
                 break
+
         self.weight = self.match_degree * self.priority
 
 
