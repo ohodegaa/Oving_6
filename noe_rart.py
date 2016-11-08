@@ -1,37 +1,21 @@
 __author__ = 'ohodegaa'
 
+from motor_objects import Motors
 
-class noe_rart:
-    def __init__(self):
-        self.value = None
+def main():
+    motor = Motors()
 
-    def update(self, recommendation):
-        self.value = recommendation
+    while True:
+        dir_ = input(">>> ")
+        if dir_ == "w":
+            motor.forward(dur=1)
+        elif dir_ == "s":
+            motor.backward(dur=1)
+        elif dir_ == "d":
+            motor.right(dur=1)
+        elif dir_ == "a":
+            motor.left(dur=1)
+        elif dir_ == "stop":
+            break
 
-    def operationalize(self):
-        for (func, args) in self.value:
-            print(*args)
-            func(*args)
-
-    def A(self):
-        print("A: no args")
-
-    def B(self, hello):
-        print("B: 1 arg: ", hello)
-
-    def C(self, a, b, c):
-        print("C: 3 args: ", a, b, c)
-
-    def main(self, t):
-        self.update([(t.B, ["hello"]), (t.C, ("Halla balla", "hello", "hei"))])
-        self.operationalize()
-
-
-def find_index(liste):
-    print((isinstance(x, noe_rart) for x in liste))
-
-
-t = noe_rart()
-liste = [t]
-find_index(liste)
-t.main(t)
+    motor.stop()
