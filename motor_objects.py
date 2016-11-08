@@ -5,8 +5,8 @@ from zumo_button import ZumoButton
 
 
 class BeltsController:
-    _sharp_turn_dur = 0.7
-    _default_speed = 0.5
+    _sharp_turn_dur = 0.5
+    _default_speed = 0.3
 
     def __init__(self):
         self.motor = Motors()
