@@ -180,5 +180,12 @@ class FollowWall(Behavior):
         """
 
     def sense_and_act(self):
-        # produce motor recommendations
-        pass
+        if self.sensor_value is True:
+            motor_action = (self.motor.forward, [])
+            self.match_degree = 0.6
+        else:
+            self.consider_deactivation()
+
+        self.motor_recomendations = {self.motor: [motor_action]}
+        self.weigth = self.match_degree * self.priority
+
