@@ -73,7 +73,8 @@ class FollowLine(Behavior):
 
     def sense_and_act(self):
         # produce motor recommendations
-        self.motor_recommendations = {self.motor: [(self.motor.forward, [2]), (self.motor.sharp_left, [])]*4}
+
+        self.motor_recommendations = {self.motor: [(self.motor.forward, [0.2]), (self.motor.sharp_left, [])]*4}
 
         check = [
             self.sensor_value[2] and self.sensor_value[3],
