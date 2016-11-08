@@ -36,4 +36,6 @@ class BeltsController:
 
     def operationalize(self):
         for (func, args) in self.value:
+            print(func)
+            print(*args)
             func(*args)

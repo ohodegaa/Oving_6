@@ -90,7 +90,7 @@ class FollowLine(Behavior):
 
         for i in range(len(check)):
             if check[i]:
-                self.motor_recommendations = {self.motor: motor_action[i]}
+                self.motor_recommendations = {self.motor: [motor_action[i]]}
                 break
         self.weight = self.match_degree * self.priority
 
