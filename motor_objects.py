@@ -28,6 +28,12 @@ class BeltsController:
     def forward(self, dur=None):
         self.motor.set_value([self._default_speed, self._default_speed], dur)
 
+    def turn_left(self):
+        self.motor.left(speed=self._default_speed, dur=0.1)
+
+    def turn_right(self):
+        self.motor.right(speed=self._default_speed, dur=0.1)
+
     def set_value(self, left_val, right_val):
         self.motor.set_value([left_val*self._default_speed, right_val*self._default_speed])
 
