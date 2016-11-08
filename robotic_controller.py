@@ -105,8 +105,8 @@ class BBCON:
     def run_one_timestep(self):
         self.update_all_sensobs()
         self.update_all_behaviors()
-        self.choose_action()
-        #self.wait(0.2)
+        #self.choose_action()
+        self.wait(0.3)
         self.reset_sensobs()
 
 
