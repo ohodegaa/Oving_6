@@ -31,7 +31,7 @@ class Arbitrator:
                 best_behaviour = behaviour
 
         self.last_behaviour = best_behaviour
-        self.last_motor_rec = best_behaviour.motor_recomendations
+        self.last_motor_rec = best_behaviour.motor_recommendations
         self.last_weight = best_behaviour.weight
         self.last_halt_request = best_behaviour.halt_request
 
