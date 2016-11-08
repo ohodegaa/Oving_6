@@ -6,7 +6,6 @@ from motor_objects import BeltsController
 from sensor_object import *
 from zumo_button import ZumoButton
 from time import sleep
-from wrappers import motors
 
 
 class BBCON:
@@ -112,11 +111,12 @@ class BBCON:
 
 
 def main():
-    bbcon = BBCON()
-    bbcon.belts.stop()
+
     ZumoButton().wait_for_press()
+    bbcon = BBCON()
     bbcon.add_sensob(FloorSensor())
     bbcon.add_behavior(FollowLine(bbcon, 1.0))
+
     while not bbcon.halt_request:
         bbcon.run_one_timestep()
 
