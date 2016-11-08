@@ -112,6 +112,7 @@ class BBCON:
 
 
 def main():
+    motors.Motors().stop()
     bbcon = BBCON()
     bbcon.belts.stop()
     ZumoButton().wait_for_press()
