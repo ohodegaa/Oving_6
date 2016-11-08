@@ -73,30 +73,25 @@ class FollowLine(Behavior):
 
     def sense_and_act(self):
         # produce motor recommendations
-        left = 0
-        right = 0
 
-        for i in range(len(self.sensor_value) // 2):
-            if self.sensor_value[i]:
-                left += 1
-            if self.sensor_value[-i - 1]:
-                right += 1
+        check = [
+            self.sensor_value[2] and self.sensor_value[3],
+            self.sensor_value[2], self.sensor_value[3],
+            self.sensor_value[1], self.sensor_value[4],
+            self.sensor_value[0], self.sensor_value[5]
+        ]
 
-        if left > right:
-            motor_action = (self.motor.turn_left, [1.0])
+        motor_action = [
+            (self.motor.forward, []),
+            (self.motor.set_value, [0.8, 1.0]), (self.motor.set_value, [1.0, 0.8]),
+            (self.motor.set_value, [0.4, 1.0]), (self.motor.set_value, [1.0, 0.4]),
+            (self.motor.sharp_left, []), (self.motor.sharp_right, [])
+        ]
 
-        elif right > left:
-            motor_action = (self.motor.turn_right, [1.0])
-
-        elif right > 0 and left > 0:
-            motor_action = (self.motor.forward, [])
-
-        else:
-            motor_action = (self.motor.random, [randint(0, 1)])
-
-        self.motor_recommendations = {self.motor: [motor_action]}
-        self.match_degree = max(left, right)
-
+        for i in range(len(check)):
+            if check[i]:
+                self.motor_recommendations = {self.motor, motor_action[i]}
+                break
         self.weight = self.match_degree * self.priority
 
 
@@ -189,4 +184,3 @@ class FollowWall(Behavior):
 
         self.motor_recomendations = {self.motor: [motor_action]}
         self.weigth = self.match_degree * self.priority
-
