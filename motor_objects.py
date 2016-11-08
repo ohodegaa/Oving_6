@@ -17,10 +17,13 @@ class BeltsController:
         self.operationalize()
 
     def sharp_left(self):
-        self.motor.set_value([-self._default_speed, self._default_speed], self._sharp_turn_dur)
+
+        #self.motor.set_value([-self._default_speed, self._default_speed], self._sharp_turn_dur)
+        Motors().set_value([-self._default_speed, self._default_speed], self._sharp_turn_dur)
 
     def sharp_right(self):
-        self.motor.set_value([self._default_speed, -self._default_speed], self._sharp_turn_dur)
+        #self.motor.set_value([self._default_speed, -self._default_speed], self._sharp_turn_dur)
+        Motors().set_value([self._default_speed, -self._default_speed], self._sharp_turn_dur)
 
     def backwards(self, dur=None):
         self.motor.set_value([-self._default_speed, -self._default_speed], dur)
@@ -31,7 +34,8 @@ class BeltsController:
     def set_value(self, left_val, right_val):
         print("left: ", left_val)
         print("Right: ", right_val)
-        self.motor.set_value([left_val*self._default_speed, right_val*self._default_speed])
+        #self.motor.set_value([left_val*self._default_speed, right_val*self._default_speed])
+        Motors().set_value([left_val * self._default_speed, right_val * self._default_speed])
 
     def random(self, rand_int):
         self.motor.set_value([self._default_speed * rand_int, self._default_speed * rand_int])
