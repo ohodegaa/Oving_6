@@ -35,7 +35,7 @@ class BeltsController:
         self.motor.set_value([self._default_speed * rand_int, self._default_speed * rand_int])
 
     def stop(self):
-        self.motor.stop()
+        self.motor.set_value([0, 0])
 
     def operationalize(self):
         for (func, args) in self.value:
