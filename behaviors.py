@@ -82,15 +82,6 @@ class FollowLine(Behavior):
             self.sensor_value[1], self.sensor_value[4],
             self.sensor_value[0], self.sensor_value[5]
         ]
-        print(check)
-        """
-        motor_action = [
-            (self.motor.forward, []),
-            (self.motor.set_value, [-0.5, 1.0]), (self.motor.set_value, [1.0, -0.5]),
-            (self.motor.set_value, [-0.5, 1.0]), (self.motor.set_value, [1.0, -0.5]),
-            (self.motor.sharp_left, []), (self.motor.sharp_right, [])
-        ]
-        """
         motor_action = [
             (self.motor.forward, []),
             (self.motor.turn_left, []), (self.motor.turn_right, []),
