@@ -11,7 +11,7 @@ class Behavior(metaclass=ABCMeta):
     def __init__(self, bbcon: BBCON, priority: float):
         self.bbcon = bbcon
         self.active_flag = True
-        self.motor_recomendations = {}  # dict[key:motob object, val: [(motob function, [arg1, arg2..]), (...)]
+        self.motor_recommendations = {}  # dict[key:motob object, val: [(motob function, [arg1, arg2..]), (...)]
         self.halt_request = False
         self.priority = priority
         self.match_degree = 1
@@ -73,41 +73,28 @@ class FollowLine(Behavior):
 
     def sense_and_act(self):
         # produce motor recommendations
-        left = 0
-        right = 0
+        left = 1
+        right = 1
         for i in range(len(self.sensor_value) // 2):
             if self.sensor_value[i]:
-                left += 1
+                left -= 0.3 * i
             if self.sensor_value[-i - 1]:
-                right += 1
+                right -= 0.3 * i
 
-        if left != right:
-            if left > right:
-                motor_action = self.motor.turn_left
-                if self.sensor_value[0]:
-                    motor_action = self.motor.sharp_left
-                    self.match_degree = 0.97
-                else:
-                    self.match_degree = 0.5
-            else:
-                motor_action = self.motor.turn_right
-                if self.sensor_value[5]:
-                    motor_action = self.motor.sharp_right
-                    self.match_degree = 0.97
-                else:
-                    self.match_degree = 0.5
+        if left > right:
+            motor_action = (self.motor.turn_left, [left])
 
-            self.motor_recomendations = {self.motor: [(motor_action, [0.99])]}
+        elif right > left:
+            motor_action = (self.motor.turn_right, [right])
 
-        elif left == 0 and right == 0:
-            motor_action = self.motor.random
-            self.match_degree = 0.8
-            self.motor_recomendations = {self.motor: [(motor_action, [randint(0, 1)])]}
+        elif right > 0 and left > 0:
+            motor_action = (self.motor.forward, [])
 
         else:
-            motor_action = self.motor.forward
-            self.match_degree = 0.4
-            self.motor_recomendations = {self.motor: [(motor_action, [0.1])]}
+            motor_action = (self.motor.random, [randint(0, 1)])
+
+        self.motor_recommendations = {self.motor: [motor_action]}
+        self.match_degree = max(left, right)
 
         self.weight = self.match_degree * self.priority
 
@@ -137,7 +124,7 @@ class AvoidObject(Behavior):
             motor_action = (self.motor.random, [randint(0, 1)])
             self.match_degree = 0.4
 
-        self.motor_recomendations = {self.motor: [motor_action]}
+        self.motor_recommendations = {self.motor: [motor_action]}
         self.weight = self.match_degree * self.priority
 
 
@@ -160,7 +147,7 @@ class Camera(Behavior):
 
     def update(self):
         """
-        sets the field motor_recomendations to a new value
+        sets the field motor_recommendations to a new value
         :return: None
         """
 
@@ -188,7 +175,7 @@ class FollowWall(Behavior):
 
     def update(self):
         """
-        sets the field motor_recomendations to a new value
+        sets the field motor_recommendations to a new value
         :return: None
         """
 
