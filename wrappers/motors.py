@@ -59,12 +59,12 @@ class Motors():
             self.set_right_speed(450)
         self.persist(dur)
 
-    def tilt_left(self, speed=0.6, dur=None):
+    def tilt_left(self, speed=0.8, dur=None):
         self.set_left_speed(150)
         self.set_right_speed(int(self.max*speed))
         self.persist(dur)
 
-    def tilt_right(self, speed=0.6, dur=None):
+    def tilt_right(self, speed=0.8, dur=None):
         self.set_left_speed(int(self.max*speed))
         self.set_right_speed(150)
         self.persist(dur)
