@@ -50,7 +50,6 @@ class Behavior(metaclass=ABCMeta):
             self.update_weight()
 
 
-
 class FollowLine(Behavior):
     def __init__(self, bbcon: BBCON, priority: float):
         super().__init__(bbcon, priority)
@@ -130,10 +129,12 @@ class AvoidObject(Behavior):
 class SideSight(Behavior):
     def __init__(self, bbcon: BBCON, priority: float):
         super().__init__(bbcon, priority)
-        self.camera = None
+        self.side_sensor = None
+
         for senOb in bbcon.sensobs:
-            if isinstance(senOb, Camera):
-                self.camera = senOb
+            if isinstance(senOb, SideSensor):
+                self.side_sensor = senOb
+                break
 
     def consider_activation(self):
         pass
@@ -142,16 +143,21 @@ class SideSight(Behavior):
         pass
 
     def gather_sensor_values(self):
-        self.sensor_value = self.camera.get_value()
-
-    def update(self):
-        """
-        sets the field motor_recommendations to a new value
-        :return: None
-        """
+        self.sensor_value = self.side_sensor.get_value()
 
     def sense_and_act(self):
-        # produce motor recommendations
-        pass
+        right = True
+        if self.sensor_value[0]:
+            right = False
+        elif self.sensor_value[1]:
+            right = True
+        else:
+            self.motor_recommendations = {self.motor: [(self.motor.random, [])]}
+            return
 
+        turn = (self.motor.sharp_right, []) if right else (self.motor.sharp_left, [])
+        forward = (self.motor.forward, [1])
+        backward = (self.motor.backward, [1])
+        turn_back = (self.motor.sharp_left, []) if right else (self.motor.sharp_right, [])
 
+        self.motor_recommendations = {self.motor: [turn, forward, backward, turn_back]}
