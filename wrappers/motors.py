@@ -60,11 +60,15 @@ class Motors():
         self.persist(dur)
 
     def tilt_left(self, speed=0.8, dur=None):
+        self.set_left_dir(1)
+        self.set_right_dir(1)
         self.set_left_speed(200)
         self.set_right_speed(self.max*speed)
         self.persist(dur)
 
     def tilt_right(self, speed=0.8, dur=None):
+        self.set_left_dir(1)
+        self.set_right_dir(1)
         self.set_left_speed(self.max*speed)
         self.set_right_speed(200)
         self.persist(dur)
