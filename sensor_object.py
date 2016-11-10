@@ -53,11 +53,10 @@ class FloorSensor(Sensor):
         auto = True
         self.sensors.append(ReflectanceSensors(auto_calibrate=auto))
         self.reflectance_sensor = self.sensors[0]
-        self.limit = 0.5
+        self.limit = 0.6
 
     def update(self):
         self.value = self.get_bool_array(self.reflectance_sensor.update())
-        print("In sensob; ", self.value)
         # [sens0, sens1, sens2, sens3, sens4, sens5]
 
 
@@ -69,7 +68,6 @@ class FloorSensor(Sensor):
         :param limit: dark/bright -limit
         :return: an array with boolean values
         """
-        print("Limit: ----- ", self.limit)
         return [val < self.limit for val in sensor_array]
 
     @staticmethod
