@@ -113,7 +113,6 @@ class BBCON:
 
 
 def main():
-    motors.Motors().stop()
     ZumoButton().wait_for_press()
     bbcon = BBCON()
     bbcon.add_sensob(FloorSensor())
