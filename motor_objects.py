@@ -5,7 +5,7 @@ from zumo_button import ZumoButton
 
 
 class BeltsController:
-    _sharp_turn_dur = 0.7
+    _sharp_turn_dur = 0.35
     _default_speed = 0.4
     _sharp_turn_speed = 0.6
 
