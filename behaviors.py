@@ -50,6 +50,7 @@ class Behavior(metaclass=ABCMeta):
             self.update_weight()
 
 
+
 class FollowLine(Behavior):
     def __init__(self, bbcon: BBCON, priority: float):
         super().__init__(bbcon, priority)
@@ -126,7 +127,7 @@ class AvoidObject(Behavior):
         self.weight = self.match_degree * self.priority
 
 
-class Camera(Behavior):
+class SideSight(Behavior):
     def __init__(self, bbcon: BBCON, priority: float):
         super().__init__(bbcon, priority)
         self.camera = None
@@ -154,35 +155,3 @@ class Camera(Behavior):
         pass
 
 
-class FollowWall(Behavior):
-    def __init__(self, bbcon: BBCON, priority: float):
-        super().__init__(bbcon, priority)
-        self.side_sensor = None
-        for senOb in bbcon.sensobs:
-            if isinstance(senOb, SideSensor):
-                self.side_sensor = senOb
-
-    def consider_activation(self):
-        pass
-
-    def consider_deactivation(self):
-        pass
-
-    def gather_sensor_values(self):
-        self.sensor_value = self.side_sensor.get_value()
-
-    def update(self):
-        """
-        sets the field motor_recommendations to a new value
-        :return: None
-        """
-
-    def sense_and_act(self):
-        if self.sensor_value is True:
-            motor_action = (self.motor.forward, [])
-            self.match_degree = 0.6
-        else:
-            self.consider_deactivation()
-
-        self.motor_recomendations = {self.motor: [motor_action]}
-        self.weigth = self.match_degree * self.priority

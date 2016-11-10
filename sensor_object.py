@@ -136,3 +136,9 @@ class CameraSensor(Sensor):
         self.sensors.append(Camera())
         self.camera = self.sensors[0]
         self.image = None
+
+    def get_image(self):
+        self.image = self.camera.get_value()
+        return self.image()
+
+
