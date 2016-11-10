@@ -16,6 +16,7 @@ class Sensor(metaclass=ABCMeta):
         """
         self.sensors = []
         self.value = None
+        self.active_flag = True
 
     @abstractmethod
     def update(self):
