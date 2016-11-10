@@ -72,7 +72,8 @@ class BBCON:
         :return:
         """
         for sensob in self.sensobs:
-            sensob.update()
+            if sensob.active_flag:
+                sensob.update()
 
     def update_all_behaviors(self):
         """
