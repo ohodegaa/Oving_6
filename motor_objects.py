@@ -5,8 +5,8 @@ from zumo_button import ZumoButton
 
 
 class BeltsController:
-    _sharp_turn_dur = 0.5
-    _default_speed = 0.3
+    _sharp_turn_dur = 0.3
+    _default_speed = 0.4
 
     def __init__(self):
         self.motor = Motors()
@@ -23,10 +23,10 @@ class BeltsController:
         self.motor.set_value([self._default_speed, -self._default_speed], self._sharp_turn_dur)
 
     def backwards(self, dur=None):
-        self.motor.set_value([-self._default_speed, -self._default_speed], dur)
+        self.motor.backward(speed=self._default_speed, dur=dur)
 
     def forward(self, dur=None):
-        self.motor.set_value([self._default_speed, self._default_speed], dur)
+        self.motor.forward(speed=self._default_speed, dur=dur)
 
     def turn_left(self, speed=_default_speed, dur=_sharp_turn_dur):
         self.motor.left(speed=speed, dur=dur)
