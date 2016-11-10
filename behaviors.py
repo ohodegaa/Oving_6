@@ -5,6 +5,7 @@ from abc import ABCMeta, abstractmethod
 from robotic_controller import BBCON
 from sensor_object import *
 from random import randint
+from imager2 import *
 
 
 class Behavior(metaclass=ABCMeta):
@@ -101,9 +102,12 @@ class AvoidObject(Behavior):
     def __init__(self, bbcon: BBCON, priority: float):
         super().__init__(bbcon, priority)
         self.front_sensor = None
+        self.camera = None
         for sensOb in bbcon.sensobs:
             if isinstance(sensOb, FrontSensor):
                 self.FrontSensor = sensOb
+            if isinstance(sensOb, CameraSensor):
+                self.camera = sensOb
 
     def gather_sensor_values(self):
         self.sensor_value = self.front_sensor.get_value()
@@ -124,6 +128,16 @@ class AvoidObject(Behavior):
 
         self.motor_recommendations = {self.motor: [motor_action]}
         self.weight = self.match_degree * self.priority
+
+    def update(self):
+        """
+        update the recomendation for AvoidObject
+        :return: None
+        """
+        if FrontSensor.get_value() < 20:
+            image = self.camera.get_image()
+
+
 
 
 class SideSight(Behavior):
