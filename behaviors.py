@@ -122,7 +122,7 @@ class AvoidObject(Behavior):
         pass
 
     def analyze_image(self, image):
-        image = Imager(image)
+        image = Imager(image=image)
         image_percentages = []
         for y in range(image.ymax):
             for x in range(image.xmax):
