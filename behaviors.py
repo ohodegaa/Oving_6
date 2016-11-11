@@ -103,7 +103,7 @@ class AvoidObject(Behavior):
         super().__init__(bbcon, priority)
         self.front_sensor = None
         self.camera = None
-        self.color_limit = 0.40
+        self.color_limit = 0.60
         self.motor_recommendations = {self.motor: [(self.motor.backwards, [1]), (self.motor.sharp_left, [2]),
                                                            (self.motor.forward, 0.2)]}
         for sensOb in bbcon.sensobs:
