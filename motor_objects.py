@@ -1,7 +1,7 @@
 __author__ = 'ohodegaa'
 
 from wrappers.motors import Motors
-from random import random as rand
+import random as r
 
 
 class BeltsController:
@@ -36,7 +36,7 @@ class BeltsController:
         self.motor.tilt_right()
 
     def random(self):
-        self.motor.set_value([self._default_speed * rand(-1, 1), self._default_speed * rand(-1, 1)])
+        self.motor.set_value([self._default_speed * (-1 + 2*r.random()), self._default_speed * (-1 + 2*r.random())])
 
     def stop(self):
         self.motor.stop()
