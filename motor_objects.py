@@ -33,10 +33,10 @@ class BeltsController:
         self.motor.forward(speed=self._default_speed, dur=dur)
 
     def turn_left(self, speed=_default_speed, dur=_sharp_turn_dur):
-        self.motor.tilt_left()
+        self.motor.tilt_left(speed=0.4)
 
     def turn_right(self, speed=_default_speed, dur=_sharp_turn_dur):
-        self.motor.tilt_right()
+        self.motor.tilt_right(speed=0.4)
 
     def random(self):
         self.motor.set_value([self._default_speed * (-1 + 2*r.random()), self._default_speed * (-1 + 2*r.random())])
