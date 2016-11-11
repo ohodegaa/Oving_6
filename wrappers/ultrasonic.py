@@ -16,6 +16,7 @@ class Ultrasonic():
         return self.value
 
     def update(self):
+        self.setup()
         self.value = self.sensor_get_value()
         return self.value
 
