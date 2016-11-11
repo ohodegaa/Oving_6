@@ -156,6 +156,7 @@ class AvoidObject(Behavior):
                 self.match_degree = 0.1
                 self.motor_recommendations = {self.motor: [(self.motor.forward, [])]}
         else:
+            self.match_degree = 0.1
             self.motor_recommendations = {self.motor: [(self.motor.forward, [])]}
 
 
