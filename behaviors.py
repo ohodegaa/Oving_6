@@ -90,11 +90,13 @@ class FollowLine(Behavior):
             (self.motor.sharp_left, []), (self.motor.sharp_right, [])
         ]
 
-        for i in range(len(check)):
+        for i in range(len(check) - 1, -1, -1):
             if check[i]:
                 self.motor_recommendations = {self.motor: [motor_action[i]]}
-                if i < 2 or i > 3:
+                if i > 4:
                     self.match_degree = 1.0
+                elif i > 2:
+                    self.match_degree = 0.9
                 else:
                     self.match_degree = 0.5
                 break
