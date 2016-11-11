@@ -109,7 +109,6 @@ class ReflectanceSensors():
 
     def update(self):
         self.compute_value()
-        print("in wrapper: ", self.value)
         return self.value
 
 

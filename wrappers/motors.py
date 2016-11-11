@@ -107,22 +107,18 @@ class Motors():
     # These are lower-level routines that translate speeds and directions into write commands to the motor output pins.
 
     def set_left_speed(self, dc):
-        print("left: ", dc)
         self.prev[0] = dc / self.max
         wp.pwmWrite(18, dc)
 
     def set_right_speed(self, dc):
-        print("right: ", dc)
         self.prev[1] = dc / self.max
         wp.pwmWrite(19, dc)
 
     def set_left_dir(self, is_forward):
-        print("left dir: ", is_forward)
         self.prev[0] *= (-1 if is_forward else 1)
         wp.digitalWrite(23, is_forward)  # 0 is forward so if they pass 1 we 'not' it
 
     def set_right_dir(self, is_forward):
-        print("right dir: ", is_forward)
         self.prev[1] *= (-1 if is_forward else 1)
         wp.digitalWrite(24, is_forward)  # 0 is forward so if they pass 1 we 'not' it
 

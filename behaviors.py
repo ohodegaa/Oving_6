@@ -69,7 +69,7 @@ class FollowLine(Behavior):
         pass
 
     def gather_sensor_values(self):
-        print("floor_sensor.get_value", self.floor_sensor.get_value())
+        print("floor_sensor: ", self.floor_sensor.get_value())
         self.sensor_value = self.floor_sensor.get_value()
 
     def sense_and_act(self):

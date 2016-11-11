@@ -53,7 +53,7 @@ class FloorSensor(Sensor):
         auto = True
         self.sensors.append(ReflectanceSensors(auto_calibrate=auto))
         self.reflectance_sensor = self.sensors[0]
-        self.limit = 0.6
+        self.limit = 0.7
 
     def update(self):
         self.value = self.get_bool_array(self.reflectance_sensor.update())
