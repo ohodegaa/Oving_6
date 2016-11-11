@@ -104,8 +104,7 @@ class AvoidObject(Behavior):
         self.front_sensor = None
         self.camera = None
         self.color_limit = 0.40
-        self.motor_recommendations = {self.motor: [(self.motor.backwards, [1]), (self.motor.sharp_left, [2]),
-                                                           (self.motor.forward, 0.2)]}
+        self.motor_recommendations = {self.motor: [(self.motor.forward, [])]}
         for sensOb in bbcon.sensobs:
             if isinstance(sensOb, FrontSensor):
                 self.front_sensor = sensOb
@@ -148,6 +147,8 @@ class AvoidObject(Behavior):
             else:
                 self.match_degree = 0.5
                 self.motor_recommendations = {self.motor: [(self.motor.forward, [])]}
+        else:
+            self.motor_recommendations = {self.motor: [(self.motor.forward, [])]}
 
 
 
