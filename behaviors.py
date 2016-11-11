@@ -108,7 +108,7 @@ class AvoidObject(Behavior):
                                                            (self.motor.forward, 0.2)]}
         for sensOb in bbcon.sensobs:
             if isinstance(sensOb, FrontSensor):
-                self.FrontSensor = sensOb
+                self.front_sensor = sensOb
             if isinstance(sensOb, CameraSensor):
                 self.camera = sensOb
 
