@@ -18,10 +18,10 @@ class BeltsController:
         self.operationalize()
 
     def sharp_left(self):
-        self.motor.set_value([-self._sharp_turn_speed, self._sharp_turn_speed], self._sharp_turn_dur)
+        self.motor.set_value([-self._sharp_turn_speed, self._sharp_turn_speed])
 
     def sharp_right(self):
-        self.motor.set_value([self._sharp_turn_speed, -self._sharp_turn_speed], self._sharp_turn_dur)
+        self.motor.set_value([self._sharp_turn_speed, -self._sharp_turn_speed])
 
     def backwards(self, dur=None):
         self.motor.backward(speed=self._default_speed, dur=dur)
