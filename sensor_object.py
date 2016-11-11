@@ -120,6 +120,7 @@ class FrontSensor(Sensor):
 
     def update(self):
         self.value = self.front_sensor.update()
+        print("avstand: ", self.value)
 
 
 class CameraSensor(Sensor):
