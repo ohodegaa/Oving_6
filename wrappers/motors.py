@@ -83,18 +83,18 @@ class Motors():
         self.persist(dur)
 
     def inc_left(self):
-        self.set_left_speed(abs(self.prev[0])*0.80)
+        self.set_left_speed(int(abs(self.prev[0])*0.80))
         right_speed = abs(self.prev[1]) * 1.15
         if right_speed > 1024:
             right_speed = 1024
-        self.set_left_speed(right_speed)
+        self.set_left_speed(int(right_speed))
 
     def inc_right(self):
-        self.set_right_speed(abs(self.prev[1])*0.80)
+        self.set_right_speed(int(abs(self.prev[1])*0.80))
         left_speed = abs(self.prev[0]) * 1.15
         if left_speed > 1024:
             left_speed = 1024
-        self.set_left_speed(left_speed)
+        self.set_left_speed(int(left_speed))
 
     def stop(self):
         self.dc = 0
