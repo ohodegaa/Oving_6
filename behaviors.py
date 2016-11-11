@@ -137,6 +137,8 @@ class AvoidObject(Behavior):
 
     def sense_and_act(self):
         if self.sensor_value < 20:
+            print("Object detected")
+            self.motor.stop()
             self.match_degree = 1
             image = self.camera.get_image()
             red_value = self.analyze_image(image)

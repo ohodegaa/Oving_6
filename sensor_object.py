@@ -130,8 +130,7 @@ class CameraSensor(Sensor):
         self.image = None
 
     def update(self):
-        self.camera.update()
+        self.image = self.camera.update()
 
     def get_image(self):
-        self.image = self.camera.get_value()
         return self.image
