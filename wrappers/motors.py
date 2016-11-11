@@ -6,8 +6,8 @@ import wiringpi2 as wp
 
 class Motors():
     def __init__(self):
-        self.setup()
         self.prev = [0.0, 0.0]
+        self.setup()
 
     def setup(self):
         self.max = 1024
