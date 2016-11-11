@@ -28,7 +28,7 @@ class Arbitrator:
         for behaviour in self.bbcon.behaviors:
             if behaviour.weight > max_weight:
                 best_behaviour = behaviour
-
+        print(type(best_behaviour).__name__)
         self.last_behaviour = best_behaviour
         self.last_motor_rec = best_behaviour.motor_recommendations
         self.last_weight = best_behaviour.weight
