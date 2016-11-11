@@ -108,13 +108,8 @@ class SideSensor(Sensor):
         self.sensors.append(IRProximitySensor())
         self.side_sensor = self.sensors[0]
 
-    def set_value(self):
-        """
-        Sets the sensob value to the sensor value [left, right].
-        -> left/rigth is boolean values indicating whether obstacles are spotted on left/right side of the sumo
-        :return:
-        """
-        self.value = self.side_sensor.get_value()
+    def update(self):
+        self.value = self.side_sensor.update()
 
 
 class FrontSensor(Sensor):
@@ -123,8 +118,10 @@ class FrontSensor(Sensor):
         self.sensors.append(Ultrasonic())
         self.front_sensor = self.sensors[0]
 
+    def update(self):
+        self.front_sensor.update()
+
     def set_value(self):
-        self.value = self.front_sensor.get_value()
         self.value = self.front_sensor.get_value()
 
 
@@ -135,6 +132,9 @@ class CameraSensor(Sensor):
         self.camera = self.sensors[0]
         self.image = None
 
+    def update(self):
+        self.camera.update()
+
     def get_image(self):
         self.image = self.camera.get_value()
-        return self.image()
+        return self.image
