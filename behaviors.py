@@ -143,8 +143,11 @@ class AvoidObject(Behavior):
             red_value = self.analyze_image(image)
             if red_value > self.color_limit:
                 self.match_degree = 1
+                self.motor_recommendations = {self.motor: [(self.motor.backwards, [1]), (self.motor.sharp_left, [2]),
+                                                           (self.motor.forward, [0.2])]}
             else:
                 self.match_degree = 0.5
+                self.motor_recommendations = {self.motor: [(self.motor.forward, [])]}
 
 
 
