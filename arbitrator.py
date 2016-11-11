@@ -3,7 +3,6 @@ __author__ = 'ohodegaa'
 import random
 
 
-
 class Arbitrator:
     def __init__(self, bbcon):
         """

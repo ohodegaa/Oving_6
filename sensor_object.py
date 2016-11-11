@@ -59,7 +59,6 @@ class FloorSensor(Sensor):
         self.value = self.get_bool_array(self.reflectance_sensor.update())
         # [sens0, sens1, sens2, sens3, sens4, sens5]
 
-
     def get_bool_array(self, sensor_array):
         """
         Generates an array with boolean values which indicates whether the sensor spotted an dark or bright area.
@@ -139,5 +138,3 @@ class CameraSensor(Sensor):
     def get_image(self):
         self.image = self.camera.get_value()
         return self.image()
-
-

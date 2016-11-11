@@ -8,7 +8,6 @@ from zumo_button import ZumoButton
 from time import sleep
 
 
-
 class BBCON:
     def __init__(self):
         """
@@ -108,7 +107,7 @@ class BBCON:
         self.update_all_sensobs()
         self.update_all_behaviors()
         self.choose_action()
-        #self.wait(0.05)
+        # self.wait(0.05)
         self.reset_sensobs()
 
 

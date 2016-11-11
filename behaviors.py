@@ -138,8 +138,6 @@ class AvoidObject(Behavior):
             image = self.camera.get_image()
 
 
-
-
 class SideSight(Behavior):
     def __init__(self, bbcon: BBCON, priority: float):
         super().__init__(bbcon, priority)
@@ -170,7 +168,7 @@ class SideSight(Behavior):
         else:
             self.motor_recommendations = {self.motor: [(self.motor.random, [])]}
             self.match_degree = 0.2
-            self.weight = self.priority*self.match_degree
+            self.weight = self.priority * self.match_degree
             return
 
         turn = (self.motor.sharp_right, []) if right else (self.motor.sharp_left, [])
@@ -178,5 +176,5 @@ class SideSight(Behavior):
         backward = (self.motor.backward, [1])
         turn_back = (self.motor.sharp_left, []) if right else (self.motor.sharp_right, [])
 
-        self.weight = self.match_degree*self.priority
+        self.weight = self.match_degree * self.priority
         self.motor_recommendations = {self.motor: [turn, forward, backward, turn_back]}
