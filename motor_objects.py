@@ -1,7 +1,7 @@
 __author__ = 'ohodegaa'
 
 from wrappers.motors import Motors
-from zumo_button import ZumoButton
+from random import random
 
 
 class BeltsController:
@@ -30,13 +30,15 @@ class BeltsController:
         self.motor.forward(speed=self._default_speed, dur=dur)
 
     def turn_left(self, speed=_default_speed, dur=_sharp_turn_dur):
-        self.motor.tilt_left()
+        #self.motor.tilt_left()
+        self.motor.inc_left()
 
     def turn_right(self, speed=_default_speed, dur=_sharp_turn_dur):
-        self.motor.tilt_right()
+        #self.motor.tilt_right()
+        self.motor.inc_right()
 
-    def random(self, rand_int):
-        self.motor.set_value([self._default_speed * rand_int, self._default_speed * rand_int])
+    def random(self):
+        self.motor.set_value([self._default_speed * random(0,1), self._default_speed * random(0,1)])
 
     def stop(self):
         self.motor.stop()

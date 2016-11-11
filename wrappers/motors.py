@@ -7,7 +7,7 @@ import wiringpi2 as wp
 class Motors():
     def __init__(self):
         self.setup()
-        self.prev = []
+        self.prev = [None, None]
 
     def setup(self):
         self.max = 1024
@@ -59,15 +59,6 @@ class Motors():
             self.set_right_speed(450)
         self.persist(dur)
 
-    def tilt_left(self, speed=0.8, dur=None):
-        self.set_left_speed(150)
-        self.set_right_speed(int(self.max*speed))
-        self.persist(dur)
-
-    def tilt_right(self, speed=0.8, dur=None):
-        self.set_left_speed(int(self.max*speed))
-        self.set_right_speed(150)
-        self.persist(dur)
 
     def right(self, speed=0.25, dur=None):
         s = int(self.max * speed)
@@ -81,6 +72,29 @@ class Motors():
             self.set_right_speed(150)
         self.persist(dur)
 
+    def tilt_left(self, speed=0.8, dur=None):
+        self.set_left_speed(150)
+        self.set_right_speed(int(self.max*speed))
+        self.persist(dur)
+
+    def tilt_right(self, speed=0.8, dur=None):
+        self.set_left_speed(int(self.max*speed))
+        self.set_right_speed(150)
+        self.persist(dur)
+
+    def inc_left(self):
+        self.set_left_speed(abs(self.prev[0])*0.80)
+        right_speed = abs(self.prev[1]) * 1.15
+        if right_speed > 1024:
+            right_speed = 1024
+        self.set_left_speed(right_speed)
+
+    def inc_right(self):
+        self.set_right_speed(abs(self.prev[1])*0.80)
+        left_speed = abs(self.prev[0]) * 1.15
+        if left_speed > 1024:
+            left_speed = 1024
+        self.set_left_speed(left_speed)
 
     def stop(self):
         self.dc = 0
@@ -93,7 +107,6 @@ class Motors():
 
     # Val should be a 2-element vector with values for the left and right motor speeds, both in the range [-1, 1].
     def set_value(self, val,dur=None):
-        self.prev = val
         left_val = int(self.max * val[0])
         right_val = int(self.max * val[1])
 
@@ -109,15 +122,19 @@ class Motors():
     # These are lower-level routines that translate speeds and directions into write commands to the motor output pins.
 
     def set_left_speed(self, dc):
+        self.prev[0] = dc/self.max
         wp.pwmWrite(18, dc)
 
     def set_right_speed(self, dc):
+        self.prev[1] = dc / self.max
         wp.pwmWrite(19, dc)
 
     def set_left_dir(self, is_forward):
+        self.prev[0] *= (-1 if is_forward else 1)
         wp.digitalWrite(23, is_forward)  # 0 is forward so if they pass 1 we 'not' it
 
     def set_right_dir(self, is_forward):
+        self.prev[1] *= (-1 if is_forward else 1)
         wp.digitalWrite(24, is_forward)  # 0 is forward so if they pass 1 we 'not' it
 
 

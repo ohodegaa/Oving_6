@@ -105,7 +105,7 @@ class AvoidObject(Behavior):
         self.camera = None
         for sensOb in bbcon.sensobs:
             if isinstance(sensOb, FrontSensor):
-                self.FrontSensor = sensOb
+                self.front_sensor = sensOb
             if isinstance(sensOb, CameraSensor):
                 self.camera = sensOb
 
@@ -121,9 +121,9 @@ class AvoidObject(Behavior):
     def sense_and_act(self):
         if self.sensor_value < 7:
             motor_action = (self.motor.sharp_left, [])
-            self.match_degree = 0.9
+            self.match_degree = 1.0
         else:
-            motor_action = (self.motor.random, [randint(0, 1)])
+            motor_action = (self.motor.random, [])
             self.match_degree = 0.4
 
         self.motor_recommendations = {self.motor: [motor_action]}
@@ -163,10 +163,14 @@ class SideSight(Behavior):
         right = True
         if self.sensor_value[0]:
             right = False
+            self.match_degree = 1.0
         elif self.sensor_value[1]:
             right = True
+            self.match_degree = 1.0
         else:
             self.motor_recommendations = {self.motor: [(self.motor.random, [])]}
+            self.match_degree = 0.2
+            self.weight = self.priority*self.match_degree
             return
 
         turn = (self.motor.sharp_right, []) if right else (self.motor.sharp_left, [])
@@ -174,4 +178,5 @@ class SideSight(Behavior):
         backward = (self.motor.backward, [1])
         turn_back = (self.motor.sharp_left, []) if right else (self.motor.sharp_right, [])
 
+        self.weight = self.match_degree*self.priority
         self.motor_recommendations = {self.motor: [turn, forward, backward, turn_back]}
