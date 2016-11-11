@@ -20,6 +20,7 @@ class Camera():
         self.value = None
 
     def sensor_get_value(self):
+        print("Picture taken")
         # This is a OS call that takes a image and makes it accessible to PIL operations in the same directory
         os.system('raspistill -t 1 -o image.png -w "' + str(self.img_width) + '" -h "' + str(self.img_height) + '" -rot "' + str(self.img_rot) + '"')
         # Open the image just taken by raspicam
