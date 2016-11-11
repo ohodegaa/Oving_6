@@ -119,10 +119,7 @@ class FrontSensor(Sensor):
         self.front_sensor = self.sensors[0]
 
     def update(self):
-        self.front_sensor.update()
-
-    def set_value(self):
-        self.value = self.front_sensor.get_value()
+        self.value = self.front_sensor.update()
 
 
 class CameraSensor(Sensor):
