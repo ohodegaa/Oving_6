@@ -90,12 +90,18 @@ class FollowLine(Behavior):
             (self.motor.sharp_left, []), (self.motor.sharp_right, [])
         ]
 
-        for i in range(len(check)):
+        for i in range(len(check) - 1, -1, -1):
             if check[i]:
+                if i > 5:
+                    self.match_degree = 1.0
+                elif i > 2:
+                    self.match_degree = 0.8
+                else:
+                    self.match_degree = 0.5
                 self.motor_recommendations = {self.motor: [motor_action[i]]}
                 break
 
-        self.weight = self.match_degree * self.priority
+
 
 
 class AvoidObject(Behavior):
@@ -132,7 +138,7 @@ class AvoidObject(Behavior):
                     pass
 
         red_mean = sum(image_percentages) / len(image_percentages)
-        print(red_mean)
+        print("red:", red_mean)
         return red_mean
 
     def sense_and_act(self):
