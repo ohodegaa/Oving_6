@@ -120,6 +120,8 @@ class FrontSensor(Sensor):
 
     def update(self):
         self.value = self.front_sensor.update()
+        if self.value == 0:
+            self.value = 1000000
         print("avstand: ", self.value)
 
 
