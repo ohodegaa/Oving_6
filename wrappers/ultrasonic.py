@@ -40,9 +40,9 @@ class Ultrasonic():
         signaloff_start = time.time()
         signaloff = signaloff_start
         # signalet timer ut dersom det tar mer en 0.5 s, da annsees det som tapt og vi prover igjen
-        #while read_val == 0 and signaloff - signaloff_start < 0.5:
-        read_val = GPIO.input(self.echo_pin)
-        signaloff = time.time()
+        while read_val == 0 and signaloff - signaloff_start < 0.5:
+            read_val = GPIO.input(self.echo_pin)
+            signaloff = time.time()
 
         signalon = signaloff
         # Finner saa den tiden det siste signalet kommer inn paa echo_pin
