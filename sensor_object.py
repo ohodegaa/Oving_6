@@ -50,7 +50,7 @@ class FloorSensor(Sensor):
         limit: a sensor value below limit indicates a dark area, above indicates a bright area
         """
         super().__init__()
-        auto = True
+        auto = False
         self.sensors.append(ReflectanceSensors(auto_calibrate=auto))
         self.reflectance_sensor = self.sensors[0]
         self.limit = 0.6
