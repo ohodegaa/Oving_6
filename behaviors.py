@@ -179,7 +179,7 @@ class SideSight(Behavior):
 
         turn = (self.motor.sharp_right, []) if right else (self.motor.sharp_left, [])
         forward = (self.motor.forward, [1])
-        backward = (self.motor.backward, [1])
+        backwards = (self.motor.backwards, [1])
         turn_back = (self.motor.sharp_left, []) if right else (self.motor.sharp_right, [])
 
-        self.motor_recommendations = {self.motor: [turn, forward, backward, turn_back]}
+        self.motor_recommendations = {self.motor: [turn, forward, backwards, turn_back]}
