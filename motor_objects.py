@@ -5,9 +5,9 @@ from random import random
 
 
 class BeltsController:
-    _sharp_turn_dur = 0.35
+    _sharp_turn_dur = None
     _default_speed = 0.4
-    _sharp_turn_speed = 0.6
+    _sharp_turn_speed = 0.5
 
     def __init__(self):
         self.motor = Motors()
