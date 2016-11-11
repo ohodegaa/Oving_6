@@ -93,9 +93,11 @@ class FollowLine(Behavior):
         for i in range(len(check)):
             if check[i]:
                 self.motor_recommendations = {self.motor: [motor_action[i]]}
+                if i < 2 or i > 3:
+                    self.match_degree = 1.0
+                else:
+                    self.match_degree = 0.5
                 break
-
-        self.weight = self.match_degree * self.priority
 
 
 class AvoidObject(Behavior):
@@ -168,7 +170,6 @@ class SideSight(Behavior):
         else:
             self.motor_recommendations = {self.motor: [(self.motor.random, [])]}
             self.match_degree = 0.2
-            self.weight = self.priority * self.match_degree
             return
 
         turn = (self.motor.sharp_right, []) if right else (self.motor.sharp_left, [])
@@ -176,5 +177,4 @@ class SideSight(Behavior):
         backward = (self.motor.backward, [1])
         turn_back = (self.motor.sharp_left, []) if right else (self.motor.sharp_right, [])
 
-        self.weight = self.match_degree * self.priority
         self.motor_recommendations = {self.motor: [turn, forward, backward, turn_back]}
