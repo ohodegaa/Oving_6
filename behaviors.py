@@ -103,6 +103,9 @@ class AvoidObject(Behavior):
         super().__init__(bbcon, priority)
         self.front_sensor = None
         self.camera = None
+        self.color_limit = 0.40
+        self.priority = {self.motor: [(self.motor.backward, [1]), (self.motor.sharp_left, [2]),
+                                                           (self.motor.forward, 0.2)]}
         for sensOb in bbcon.sensobs:
             if isinstance(sensOb, FrontSensor):
                 self.FrontSensor = sensOb
@@ -118,25 +121,31 @@ class AvoidObject(Behavior):
     def consider_deactivation(self):
         pass
 
+    def analyze_image(imager):
+        image = Imager(fid=id)
+        image_percentages = []
+        for y in range(image.ymax):
+            for x in range(image.xmax):
+                pixels = image.get_pixel(x, y)
+                try:
+                    image_percentages.append(pixels[0] / sum(pixels))
+                except:
+                    pass
+
+        red_mean = sum(image_percentages) / len(image_percentages)
+        print(red_mean)
+        return red_mean
+
     def sense_and_act(self):
-        if self.sensor_value < 7:
-            motor_action = (self.motor.sharp_left, [])
-            self.match_degree = 0.9
-        else:
-            motor_action = (self.motor.random, [randint(0, 1)])
-            self.match_degree = 0.4
-
-        self.motor_recommendations = {self.motor: [motor_action]}
-        self.weight = self.match_degree * self.priority
-
-    def update(self):
-        """
-        update the recomendation for AvoidObject
-        :return: None
-        """
-        if FrontSensor.get_value() < 20:
+        if self.sensor_value < 20:
+            self.match_degree = 1
             image = self.camera.get_image()
-
+            imager = Imager(image=image)
+            red_value = self.analyze_image(imager)
+            if red_value > self.color_limit:
+                self.match_degree = 1
+            else:
+                self.match_degree = 0.5
 
 
 
