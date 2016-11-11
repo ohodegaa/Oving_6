@@ -49,3 +49,6 @@ class BeltsController:
             print(func.__name__)
             print(*args)
             func(*args)
+
+    def hello(self):
+        print("halla")
