@@ -115,12 +115,12 @@ def main():
     ZumoButton().wait_for_press()
     bbcon = BBCON()
     bbcon.add_sensob(FloorSensor())
-    bbcon.add_sensob(CameraSensor())
-    bbcon.add_sensob(SideSensor())
-    bbcon.add_sensob(FrontSensor())
+    #bbcon.add_sensob(CameraSensor())
+    #bbcon.add_sensob(SideSensor())
+    #bbcon.add_sensob(FrontSensor())
     bbcon.add_behavior(FollowLine(bbcon, 0.8))
-    bbcon.add_behavior(AvoidObject(bbcon ,1.0))
-    bbcon.add_behavior(SideSight(bbcon, 0.7))
+    #bbcon.add_behavior(AvoidObject(bbcon ,1.0))
+    #bbcon.add_behavior(SideSight(bbcon, 0.7))
 
 
     while not bbcon.halt_request:
