@@ -6,7 +6,7 @@ from motor_objects import BeltsController
 from sensor_object import *
 from zumo_button import ZumoButton
 from time import sleep
-from wrappers import motors
+
 
 
 class BBCON:

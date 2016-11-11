@@ -1,10 +1,9 @@
 __author__ = 'ohodegaa'
 
 from wrappers.motors import Motors
-from zumo_button import ZumoButton
-
+from time import sleep
 
 m = Motors()
-print("stop")
-ZumoButton().wait_for_press()
+sleep(1.0)
 m.stop()
+print("stopped")
