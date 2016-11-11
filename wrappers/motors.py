@@ -82,6 +82,8 @@ class Motors():
         self.persist(dur)
 
     def inc_left(self):
+        self.set_left_dir(0)
+        self.set_right_dir(0)
         self.set_left_speed(int(abs(self.prev[0] * self.max) * 0.80))
         right_speed = abs(self.prev[1] * self.max) * 1.15
         if right_speed > 1024:
@@ -89,6 +91,8 @@ class Motors():
         self.set_left_speed(int(right_speed))
 
     def inc_right(self):
+        self.set_left_dir(0)
+        self.set_right_dir(0)
         self.set_right_speed(int(abs(self.prev[1] * self.max) * 0.80))
         left_speed = abs(self.prev[0] * self.max) * 1.15
         if left_speed > 1024:
@@ -105,6 +109,7 @@ class Motors():
 
     # Val should be a 2-element vector with values for the left and right motor speeds, both in the range [-1, 1].
     def set_value(self, val, dur=None):
+        self.prev = val
         left_val = int(self.max * val[0])
         right_val = int(self.max * val[1])
 
