@@ -5,8 +5,8 @@
 - Ole Haakon Oedegaard
 
 
-Skapnr.: 41
-Kode til skap: 020
+Skapnr.: 27
+Kode til skap: 5520
 
 
 Oversikt:
