@@ -121,8 +121,8 @@ class AvoidObject(Behavior):
     def consider_deactivation(self):
         pass
 
-    def analyze_image(imager):
-        image = Imager(fid=id)
+    def analyze_image(self, image):
+        image = Imager(image)
         image_percentages = []
         for y in range(image.ymax):
             for x in range(image.xmax):
@@ -140,8 +140,7 @@ class AvoidObject(Behavior):
         if self.sensor_value < 20:
             self.match_degree = 1
             image = self.camera.get_image()
-            imager = Imager(image=image)
-            red_value = self.analyze_image(imager)
+            red_value = self.analyze_image(image)
             if red_value > self.color_limit:
                 self.match_degree = 1
             else:
