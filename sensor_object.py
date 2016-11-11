@@ -53,12 +53,11 @@ class FloorSensor(Sensor):
         auto = True
         self.sensors.append(ReflectanceSensors(auto_calibrate=auto))
         self.reflectance_sensor = self.sensors[0]
-        self.limit = 0.6
+        self.limit = 0.7
 
     def update(self):
         self.value = self.get_bool_array(self.reflectance_sensor.update())
         # [sens0, sens1, sens2, sens3, sens4, sens5]
-
 
     def get_bool_array(self, sensor_array):
         """
@@ -139,5 +138,3 @@ class CameraSensor(Sensor):
     def get_image(self):
         self.image = self.camera.get_value()
         return self.image()
-
-
