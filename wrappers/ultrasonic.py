@@ -78,4 +78,6 @@ class Ultrasonic():
         distance = 344 * timepassed * 100
         # Dette er tur retur distansen. For aa faa distansen en vei deler vi bare paa 2
         distance = distance / 2
+        if distance == 0:
+            distance = 100000
         return distance
