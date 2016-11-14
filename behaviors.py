@@ -92,7 +92,7 @@ class FollowLine(Behavior):
 
         for i in range(len(check) - 1, -1, -1):
             if check[i]:
-                if i > 5:
+                if i > 4:
                     self.match_degree = 1.0
                 elif i > 2:
                     self.match_degree = 0.8
