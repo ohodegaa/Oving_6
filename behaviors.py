@@ -150,7 +150,7 @@ class AvoidObject(Behavior):
                 self.motor_recommendations = {self.motor: [(self.motor.backwards, [0.05]), (self.motor.full_turn, []),
                                                            (self.motor.forward, [0.05])]}
             else:
-                self.motor_recommendations = {self.motor: [(self.motor.forward, [2.0]), (self.motor.backwards, [2.0])]}
+                self.motor_recommendations = {self.motor: [(self.motor.forward, [2.5]), (self.motor.backwards, [2.5])]}
         else:
             self.match_degree = 0.1
             self.motor_recommendations = {self.motor: [(self.motor.forward, [])]}
@@ -185,10 +185,10 @@ class SideSight(Behavior):
         else:
             self.motor_recommendations = {self.motor: [(self.motor.random, [])]}
             return
-
-        turn = (self.motor.sharp_right, []) if right else (self.motor.sharp_left, [])
+        self.match_degree = 0.8
+        turn = (self.motor.sharp_right, [0.25]) if right else (self.motor.sharp_left, [0.25])
         forward = (self.motor.forward, [1])
         backwards = (self.motor.backwards, [1])
-        turn_back = (self.motor.sharp_left, []) if right else (self.motor.sharp_right, [])
+        turn_back = (self.motor.sharp_left, [0.25]) if right else (self.motor.sharp_right, [0.25])
 
         self.motor_recommendations = {self.motor: [turn, forward, backwards, turn_back]}
