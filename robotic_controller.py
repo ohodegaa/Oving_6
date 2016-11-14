@@ -107,7 +107,7 @@ class BBCON:
         self.update_all_sensobs()
         self.update_all_behaviors()
         self.choose_action()
-        self.wait(0.08)
+        self.wait(0.01)
         self.reset_sensobs()
 
 
