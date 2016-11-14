@@ -85,8 +85,8 @@ class FollowLine(Behavior):
         ]
         motor_action = [
             (self.motor.forward, []),
-            (self.motor.turn_left, []), (self.motor.turn_right, []),
-            (self.motor.turn_left, []), (self.motor.turn_right, []),
+            (self.motor.turn_left, [0.4]), (self.motor.turn_right, [0.4]),
+            (self.motor.turn_left, [0.8]), (self.motor.turn_right, [0.8]),
             (self.motor.sharp_left, []), (self.motor.sharp_right, [])
         ]
 
@@ -100,8 +100,6 @@ class FollowLine(Behavior):
                     self.match_degree = 0.5
                 self.motor_recommendations = {self.motor: [motor_action[i]]}
                 break
-
-
 
 
 class AvoidObject(Behavior):
